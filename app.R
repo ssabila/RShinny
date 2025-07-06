@@ -21,47 +21,47 @@ library(moments)
 # Enhanced Modern CSS theme for climate change dashboard
 climate_css <- "
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* Root Variables for Consistent Theming */
 :root {
-  --primary-color: #2563eb;
-  --primary-dark: #1e40af;
-  --primary-light: #3b82f6;
+  --primary-color: #064e3b;
+  --primary-dark: #022c22;
+  --primary-light: #065f46;
   --secondary-color: #059669;
   --secondary-dark: #047857;
   --secondary-light: #10b981;
-  --accent-color: #f59e0b;
-  --accent-light: #fbbf24;
+  --accent-color: #fbbf24;
+  --accent-light: #fcd34d;
   --danger-color: #dc2626;
   --warning-color: #f59e0b;
   --success-color: #059669;
-  --info-color: #0ea5e9;
+  --info-color: #0891b2;
   
   --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #e2e8f0;
-  --bg-dark: #1e293b;
-  --bg-darker: #0f172a;
+  --bg-secondary: #f0fdf4;
+  --bg-tertiary: #dcfce7;
+  --bg-dark: #1a2e05;
+  --bg-darker: #0f1b0a;
   
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-light: #94a3b8;
+  --text-primary: #064e3b;
+  --text-secondary: #166534;
+  --text-light: #22c55e;
   --text-white: #ffffff;
   
-  --border-color: #e2e8f0;
-  --border-light: #f1f5f9;
+  --border-color: #bbf7d0;
+  --border-light: #dcfce7;
   
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px 0 rgba(6, 78, 59, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(6, 78, 59, 0.1), 0 2px 4px -1px rgba(6, 78, 59, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(6, 78, 59, 0.1), 0 4px 6px -2px rgba(6, 78, 59, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(6, 78, 59, 0.1), 0 10px 10px -5px rgba(6, 78, 59, 0.04);
   
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-climate: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  --gradient-ocean: linear-gradient(135deg, #667db6 0%, #0082c8 50%, #0082c8 50%, #667db6 100%);
+  --gradient-primary: linear-gradient(135deg, #064e3b 0%, #022c22 50%, #065f46 100%);
+  --gradient-secondary: linear-gradient(135deg, #059669 0%, #047857 50%, #10b981 100%);
+  --gradient-success: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+  --gradient-climate: linear-gradient(135deg, #a7f3d0 0%, #d1fae5 50%, #bbf7d0 100%);
+  --gradient-forest: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
 }
 
 /* Global Styles */
@@ -70,8 +70,8 @@ climate_css <- "
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 14px;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-secondary);
@@ -122,11 +122,13 @@ p {
   background: transparent !important;
   color: var(--text-white) !important;
   font-weight: 700 !important;
-  font-size: 1.1rem !important;
+  font-size: 1.4rem !important;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   padding: 0 20px;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.5px;
 }
 
 .main-header .logo:hover {
@@ -157,13 +159,15 @@ p {
 
 .sidebar-menu > li > a {
   color: #cbd5e1 !important;
-  padding: 16px 20px !important;
-  font-weight: 500 !important;
-  font-size: 0.9rem !important;
+  padding: 18px 20px !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
   transition: all 0.3s ease !important;
   border-left: 3px solid transparent;
   position: relative;
   overflow: hidden;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.3px;
 }
 
 .sidebar-menu > li > a::before {
@@ -208,9 +212,12 @@ p {
 
 .sidebar-menu .treeview-menu > li > a {
   color: #94a3b8 !important;
-  padding: 12px 20px 12px 40px !important;
-  font-size: 0.85rem !important;
+  padding: 14px 20px 14px 40px !important;
+  font-size: 1rem !important;
   transition: all 0.3s ease !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2px;
 }
 
 .sidebar-menu .treeview-menu > li:hover > a {
@@ -250,12 +257,14 @@ p {
 }
 
 .box-title {
-  font-size: 1.1rem !important;
+  font-size: 1.2rem !important;
   font-weight: 600 !important;
   margin: 0 !important;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.3px;
 }
 
 .box-body {
@@ -286,18 +295,21 @@ p {
 }
 
 .small-box .inner h3 {
-  font-size: 2.2rem !important;
+  font-size: 2.4rem !important;
   font-weight: 700 !important;
   margin: 0 0 10px 0 !important;
   color: var(--text-white) !important;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .small-box .inner p {
-  font-size: 1rem !important;
+  font-size: 1.1rem !important;
   margin: 0 !important;
   color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.3px;
 }
 
 .small-box .icon {
@@ -321,29 +333,30 @@ p {
 }
 
 .bg-blue .small-box {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: var(--gradient-primary) !important;
 }
 
 .bg-purple .small-box {
-  background: linear-gradient(135deg, #667db6 0%, #0082c8 100%) !important;
+  background: var(--gradient-forest) !important;
 }
 
 .bg-orange .small-box {
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+  background: var(--gradient-secondary) !important;
 }
 
 /* Button Enhancements */
 .btn {
   border-radius: 8px !important;
-  padding: 12px 24px !important;
-  font-weight: 500 !important;
-  font-size: 0.9rem !important;
+  padding: 14px 28px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
   border: none !important;
   transition: all 0.3s ease !important;
   text-transform: none !important;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.4px;
   position: relative;
   overflow: hidden;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .btn::before {
@@ -412,11 +425,14 @@ p {
 .nav-tabs-custom > .nav-tabs > li > a {
   border: none !important;
   border-radius: 0 !important;
-  padding: 15px 20px !important;
+  padding: 16px 22px !important;
   color: var(--text-secondary) !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   transition: all 0.3s ease !important;
   position: relative;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.3px;
 }
 
 .nav-tabs-custom > .nav-tabs > li > a::after {
@@ -435,7 +451,7 @@ p {
 }
 
 .nav-tabs-custom > .nav-tabs > li:hover > a {
-  background: rgba(37, 99, 235, 0.05) !important;
+  background: rgba(6, 78, 59, 0.08) !important;
   color: var(--primary-color) !important;
 }
 
@@ -455,24 +471,28 @@ p {
 .form-control {
   border: 2px solid var(--border-color) !important;
   border-radius: 8px !important;
-  padding: 12px 16px !important;
-  font-size: 0.9rem !important;
+  padding: 14px 18px !important;
+  font-size: 1rem !important;
   transition: all 0.3s ease !important;
   background: var(--bg-primary) !important;
   color: var(--text-primary) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
 }
 
 .form-control:focus {
   border-color: var(--primary-color) !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
   outline: none !important;
 }
 
 .form-group label {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   color: var(--text-primary) !important;
-  margin-bottom: 8px !important;
-  font-size: 0.9rem !important;
+  margin-bottom: 10px !important;
+  font-size: 1rem !important;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.2px;
 }
 
 /* Select2 and Selectize Enhancements */
@@ -486,7 +506,7 @@ p {
 
 .selectize-input.focus {
   border-color: var(--primary-color) !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
 }
 
 /* Data Table Enhancements */
@@ -520,7 +540,7 @@ table.dataTable tbody tr {
 }
 
 table.dataTable tbody tr:hover {
-  background: rgba(37, 99, 235, 0.05) !important;
+  background: rgba(6, 78, 59, 0.08) !important;
   transform: scale(1.01);
 }
 
@@ -662,13 +682,13 @@ pre::before {
   }
   
   .main-header .logo {
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
     padding: 0 15px !important;
   }
   
   .sidebar-menu > li > a {
-    padding: 12px 15px !important;
-    font-size: 0.85rem !important;
+    padding: 16px 15px !important;
+    font-size: 1rem !important;
   }
   
   .small-box .inner {
@@ -680,8 +700,8 @@ pre::before {
   }
   
   .nav-tabs-custom > .nav-tabs > li > a {
-    padding: 12px 15px !important;
-    font-size: 0.85rem !important;
+    padding: 14px 16px !important;
+    font-size: 0.95rem !important;
   }
 }
 
@@ -762,8 +782,10 @@ pre::before {
 }
 
 .leaflet-popup-content {
-  font-family: 'Inter', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   line-height: 1.5 !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
 }
 
 /* File input enhancements */
@@ -778,7 +800,7 @@ pre::before {
 
 .form-group input[type='file']:hover {
   border-color: var(--primary-color) !important;
-  background: rgba(37, 99, 235, 0.05) !important;
+  background: rgba(6, 78, 59, 0.08) !important;
 }
 
 /* Progress bar enhancements */
@@ -804,7 +826,7 @@ button:focus,
 .btn:focus {
   outline: 2px solid var(--primary-color) !important;
   outline-offset: 2px !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
 }
 
 /* Enhanced checkbox and radio styling */
@@ -1053,11 +1075,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Ringkasan Data Iklim", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("overview_climate_plot"), type = 4, color = "#2563eb")
+                  withSpinner(plotlyOutput("overview_climate_plot"), type = 4, color = "#064e3b")
                 ),
                 box(
                   title = "🌾 Produktivitas vs Iklim", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("overview_productivity_plot"), type = 4, color = "#2563eb")
+                  withSpinner(plotlyOutput("overview_productivity_plot"), type = 4, color = "#064e3b")
                 )
               )
       ),
