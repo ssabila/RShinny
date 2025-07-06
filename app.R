@@ -71,7 +71,7 @@ climate_css <- "
 
 body {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-secondary);
@@ -86,13 +86,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin-bottom: 0.5em;
   color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
 }
 
-h1 { font-size: 2.25rem; line-height: 1.2; }
-h2 { font-size: 1.875rem; line-height: 1.3; }
-h3 { font-size: 1.5rem; line-height: 1.4; }
-h4 { font-size: 1.25rem; line-height: 1.4; }
-h5 { font-size: 1.125rem; line-height: 1.5; }
+h1 { font-size: 2.45rem; line-height: 1.2; }
+h2 { font-size: 2.075rem; line-height: 1.3; }
+h3 { font-size: 1.7rem; line-height: 1.4; }
+h4 { font-size: 1.45rem; line-height: 1.4; }
+h5 { font-size: 1.325rem; line-height: 1.5; }
 
 p {
   margin-bottom: 1rem;
@@ -122,7 +123,7 @@ p {
   background: transparent !important;
   color: var(--text-white) !important;
   font-weight: 700 !important;
-  font-size: 1.4rem !important;
+  font-size: 1.6rem !important;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -161,7 +162,7 @@ p {
   color: #cbd5e1 !important;
   padding: 18px 20px !important;
   font-weight: 600 !important;
-  font-size: 1.1rem !important;
+  font-size: 1.3rem !important;
   transition: all 0.3s ease !important;
   border-left: 3px solid transparent;
   position: relative;
@@ -213,7 +214,7 @@ p {
 .sidebar-menu .treeview-menu > li > a {
   color: #94a3b8 !important;
   padding: 14px 20px 14px 40px !important;
-  font-size: 1rem !important;
+  font-size: 1.2rem !important;
   transition: all 0.3s ease !important;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 500 !important;
@@ -256,8 +257,13 @@ p {
   border: none !important;
 }
 
+.box.box-solid.box-primary > .box-header .box-title {
+  color: var(--text-white) !important;
+  font-weight: 700 !important;
+}
+
 .box-title {
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
   font-weight: 600 !important;
   margin: 0 !important;
   display: flex;
@@ -295,7 +301,7 @@ p {
 }
 
 .small-box .inner h3 {
-  font-size: 2.4rem !important;
+  font-size: 2.6rem !important;
   font-weight: 700 !important;
   margin: 0 0 10px 0 !important;
   color: var(--text-white) !important;
@@ -304,7 +310,7 @@ p {
 }
 
 .small-box .inner p {
-  font-size: 1.1rem !important;
+  font-size: 1.3rem !important;
   margin: 0 !important;
   color: rgba(255, 255, 255, 0.9) !important;
   font-weight: 600 !important;
@@ -349,7 +355,7 @@ p {
   border-radius: 8px !important;
   padding: 14px 28px !important;
   font-weight: 600 !important;
-  font-size: 1rem !important;
+  font-size: 1.2rem !important;
   border: none !important;
   transition: all 0.3s ease !important;
   text-transform: none !important;
@@ -426,12 +432,12 @@ p {
   border: none !important;
   border-radius: 0 !important;
   padding: 16px 22px !important;
-  color: var(--text-secondary) !important;
+  color: var(--text-primary) !important;
   font-weight: 600 !important;
   transition: all 0.3s ease !important;
   position: relative;
   font-family: 'Poppins', sans-serif !important;
-  font-size: 1rem !important;
+  font-size: 1.2rem !important;
   letter-spacing: 0.3px;
 }
 
@@ -451,20 +457,32 @@ p {
 }
 
 .nav-tabs-custom > .nav-tabs > li:hover > a {
-  background: rgba(6, 78, 59, 0.08) !important;
-  color: var(--primary-color) !important;
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
 }
 
 .nav-tabs-custom > .nav-tabs > li.active > a {
-  background: var(--bg-primary) !important;
-  color: var(--primary-color) !important;
-  border-bottom: 3px solid var(--primary-color) !important;
-  font-weight: 600 !important;
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+  border-bottom: 3px solid var(--accent-color) !important;
+  font-weight: 700 !important;
 }
 
 .nav-tabs-custom > .tab-content {
   padding: 25px;
   background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Dark background text color override */
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li:hover > a {
+  color: var(--text-white) !important;
+}
+
+/* Light background text color */
+.nav-tabs-custom > .nav-tabs > li > a {
+  color: var(--text-primary) !important;
 }
 
 /* Form Control Enhancements */
@@ -472,7 +490,7 @@ p {
   border: 2px solid var(--border-color) !important;
   border-radius: 8px !important;
   padding: 14px 18px !important;
-  font-size: 1rem !important;
+  font-size: 1.2rem !important;
   transition: all 0.3s ease !important;
   background: var(--bg-primary) !important;
   color: var(--text-primary) !important;
@@ -490,7 +508,7 @@ p {
   font-weight: 600 !important;
   color: var(--text-primary) !important;
   margin-bottom: 10px !important;
-  font-size: 1rem !important;
+  font-size: 1.2rem !important;
   font-family: 'Poppins', sans-serif !important;
   letter-spacing: 0.2px;
 }
@@ -604,7 +622,7 @@ pre, .shiny-text-output {
   border-radius: 8px !important;
   padding: 20px !important;
   font-family: 'JetBrains Mono', 'Monaco', 'Menlo', monospace !important;
-  font-size: 0.85rem !important;
+  font-size: 1.05rem !important;
   line-height: 1.6 !important;
   overflow-x: auto !important;
   box-shadow: var(--shadow-md) !important;
@@ -682,13 +700,13 @@ pre::before {
   }
   
   .main-header .logo {
-    font-size: 1.2rem !important;
+    font-size: 1.4rem !important;
     padding: 0 15px !important;
   }
   
   .sidebar-menu > li > a {
     padding: 16px 15px !important;
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
   }
   
   .small-box .inner {
@@ -696,12 +714,12 @@ pre::before {
   }
   
   .small-box .inner h3 {
-    font-size: 1.8rem !important;
+    font-size: 2rem !important;
   }
   
   .nav-tabs-custom > .nav-tabs > li > a {
     padding: 14px 16px !important;
-    font-size: 0.95rem !important;
+    font-size: 1.1rem !important;
   }
 }
 
@@ -784,7 +802,7 @@ pre::before {
 .leaflet-popup-content {
   font-family: 'Poppins', sans-serif !important;
   line-height: 1.5 !important;
-  font-size: 0.95rem !important;
+  font-size: 1.15rem !important;
   font-weight: 500 !important;
 }
 
