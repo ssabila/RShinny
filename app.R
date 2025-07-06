@@ -1022,12 +1022,12 @@ ui <- dashboardPage(
           // Add loading overlay for better UX
           $('body').append('<div id=\"loading-overlay\" class=\"loading-overlay\" style=\"display: none;\"><div class=\"loading-spinner\"></div></div>');
           
-          // Show loading on button clicks
-          $('.btn-primary, .btn-success').click(function() {
+          // Show loading only on analysis button clicks
+          $('#run_descriptive, #run_correlation, #run_kruskal, #run_regression, #run_timeseries, #run_prediction, #update_viz, #update_map, #merge_data').click(function() {
             $('#loading-overlay').fadeIn(300);
             setTimeout(function() {
               $('#loading-overlay').fadeOut(300);
-            }, 2000);
+            }, 3000);
           });
           
           // Add smooth scroll animation
@@ -1093,11 +1093,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Ringkasan Data Iklim", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("overview_climate_plot"), type = 4, color = "#064e3b")
+                  plotlyOutput("overview_climate_plot")
                 ),
                 box(
                   title = "🌾 Produktivitas vs Iklim", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("overview_productivity_plot"), type = 4, color = "#064e3b")
+                  plotlyOutput("overview_productivity_plot")
                 )
               )
       ),
@@ -1311,11 +1311,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Distribusi Data", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("descriptive_histogram"), type = 4, color = "#059669")
+                  plotlyOutput("descriptive_histogram")
                 ),
                 box(
                   title = "📦 Boxplot Data", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("descriptive_boxplot"), type = 4, color = "#059669")
+                  plotlyOutput("descriptive_boxplot")
                 )
               )
       ),
@@ -1331,13 +1331,13 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "🔗 Matriks Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 9,
-                  withSpinner(plotOutput("correlation_plot"), type = 4, color = "#f59e0b")
+                  plotOutput("correlation_plot")
                 )
               ),
               fluidRow(
                 box(
                   title = "📊 Tabel Korelasi", status = "primary", solidHeader = TRUE, width = 12,
-                  withSpinner(DT::dataTableOutput("correlation_table"), type = 4, color = "#f59e0b")
+                  DT::dataTableOutput("correlation_table")
                 )
               )
       ),
@@ -1367,7 +1367,7 @@ ui <- dashboardPage(
                   title = "🧪 Hasil Kruskal Wallis Test", status = "primary", solidHeader = TRUE, width = 9,
                   verbatimTextOutput("kruskal_results"),
                   br(),
-                  withSpinner(plotlyOutput("kruskal_plot"), type = 4, color = "#dc2626")
+                  plotlyOutput("kruskal_plot")
                 )
               )
       ),
@@ -1399,11 +1399,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Plot Residual", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("regression_residual_plot"), type = 4, color = "#10b981")
+                  plotlyOutput("regression_residual_plot")
                 ),
                 box(
                   title = "🎯 Prediksi vs Aktual", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("regression_prediction_plot"), type = 4, color = "#10b981")
+                  plotlyOutput("regression_prediction_plot")
                 )
               )
       ),
@@ -1423,7 +1423,7 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "📈 Plot Time Series", status = "primary", solidHeader = TRUE, width = 9,
-                  withSpinner(plotlyOutput("timeseries_plot"), type = 4, color = "#0ea5e9")
+                  plotlyOutput("timeseries_plot")
                 )
               ),
               fluidRow(
@@ -1479,11 +1479,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Prediksi vs Data Historis", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("prediction_comparison_plot"), type = 4, color = "#8b5cf6")
+                  plotlyOutput("prediction_comparison_plot")
                 ),
                 box(
                   title = "🎯 Sensitivity Analysis", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("sensitivity_plot"), type = 4, color = "#8b5cf6")
+                  plotlyOutput("sensitivity_plot")
                 )
               )
       ),
@@ -1513,17 +1513,17 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "📊 Visualisasi Utama", status = "primary", solidHeader = TRUE, width = 9,
-                  withSpinner(plotlyOutput("advanced_plot", height = "500px"), type = 4, color = "#ec4899")
+                  plotlyOutput("advanced_plot", height = "500px")
                 )
               ),
               fluidRow(
                 box(
                   title = "📈 Plot Tambahan 1", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("additional_plot1"), type = 4, color = "#f97316")
+                  plotlyOutput("additional_plot1")
                 ),
                 box(
                   title = "📊 Plot Tambahan 2", status = "primary", solidHeader = TRUE, width = 6,
-                  withSpinner(plotlyOutput("additional_plot2"), type = 4, color = "#f97316")
+                  plotlyOutput("additional_plot2")
                 )
               )
       ),
@@ -1547,7 +1547,7 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "🗺️ Peta Interaktif Jawa Timur", status = "primary", solidHeader = TRUE, width = 9,
-                  withSpinner(leafletOutput("interactive_map", height = "600px"), type = 4, color = "#06b6d4")
+                  leafletOutput("interactive_map", height = "600px")
                 )
               )
       ),
@@ -1672,25 +1672,25 @@ ui <- dashboardPage(
                             buttonLabel = "Browse...",
                             placeholder = "Belum ada file yang dipilih"),
                   br(),
-                  conditionalPanel(
-                    condition = "output.file_uploaded",
-                    h5("Preview Data yang Diupload:"),
-                    withSpinner(DT::dataTableOutput("uploaded_preview"), type = 4, color = "#059669"),
-                    br(),
-                    h5("Status Penggabungan:"),
-                    verbatimTextOutput("merge_status"),
-                    br(),
-                    actionButton("merge_data", "🔗 Gabungkan dengan Data Utama", class = "btn-success"),
-                    br(), br(),
-                    conditionalPanel(
-                      condition = "output.data_merged",
-                      div(class = "alert alert-success",
-                          HTML("<strong>✅ Data Berhasil Digabung!</strong><br>
-                               Variabel tambahan sekarang tersedia di semua fitur analisis. Silakan refresh halaman untuk melihat variabel baru di dropdown.")),
-                      h5("Preview Data Setelah Digabung:"),
-                      withSpinner(DT::dataTableOutput("merged_preview"), type = 4, color = "#059669")
+                                      conditionalPanel(
+                      condition = "output.file_uploaded",
+                      h5("Preview Data yang Diupload:"),
+                      DT::dataTableOutput("uploaded_preview"),
+                      br(),
+                      h5("Status Penggabungan:"),
+                      verbatimTextOutput("merge_status"),
+                      br(),
+                      actionButton("merge_data", "🔗 Gabungkan dengan Data Utama", class = "btn-success"),
+                      br(), br(),
+                      conditionalPanel(
+                        condition = "output.data_merged",
+                        div(class = "alert alert-success",
+                            HTML("<strong>✅ Data Berhasil Digabung!</strong><br>
+                                 Variabel tambahan sekarang tersedia di semua fitur analisis. Silakan refresh halaman untuk melihat variabel baru di dropdown.")),
+                        h5("Preview Data Setelah Digabung:"),
+                        DT::dataTableOutput("merged_preview")
+                      )
                     )
-                  )
                 )
               )
       )
