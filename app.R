@@ -18,39 +18,861 @@ library(MASS)
 library(shinycssloaders)
 library(moments)
 
-# Custom CSS theme for climate change
+# Enhanced Modern CSS theme for climate change dashboard
 climate_css <- "
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Root Variables for Consistent Theming */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1e40af;
+  --primary-light: #3b82f6;
+  --secondary-color: #059669;
+  --secondary-dark: #047857;
+  --secondary-light: #10b981;
+  --accent-color: #f59e0b;
+  --accent-light: #fbbf24;
+  --danger-color: #dc2626;
+  --warning-color: #f59e0b;
+  --success-color: #059669;
+  --info-color: #0ea5e9;
+  
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --bg-dark: #1e293b;
+  --bg-darker: #0f172a;
+  
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-light: #94a3b8;
+  --text-white: #ffffff;
+  
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-climate: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --gradient-ocean: linear-gradient(135deg, #667db6 0%, #0082c8 50%, #0082c8 50%, #667db6 100%);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--text-primary);
+}
+
+h1 { font-size: 2.25rem; line-height: 1.2; }
+h2 { font-size: 1.875rem; line-height: 1.3; }
+h3 { font-size: 1.5rem; line-height: 1.4; }
+h4 { font-size: 1.25rem; line-height: 1.4; }
+h5 { font-size: 1.125rem; line-height: 1.5; }
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Main Layout Styling */
 .content-wrapper, .right-side {
-  background-color: #F0FFF0;
+  background: var(--bg-secondary) !important;
+  min-height: 100vh;
 }
+
+/* Header Enhancements */
+.main-header {
+  background: var(--gradient-primary) !important;
+  border: none !important;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+}
+
 .main-header .navbar {
-  background-color: #1E6B4F !important;
+  background: transparent !important;
+  border: none !important;
 }
+
 .main-header .logo {
-  background-color: #1E6B4F !important;
+  background: transparent !important;
+  color: var(--text-white) !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
 }
+
+.main-header .logo:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Sidebar Styling */
+.main-sidebar {
+  background: var(--bg-dark) !important;
+  box-shadow: var(--shadow-xl);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .skin-blue .main-sidebar {
-  background-color: #1E4D3B;
+  background: var(--bg-dark) !important;
 }
-.skin-blue .sidebar-menu > li.active > a {
-  background-color: #2E8B57;
+
+.sidebar-menu {
+  margin: 0;
+  padding: 20px 0;
 }
-.skin-blue .sidebar-menu > li:hover > a {
-  background-color: #2E8B57;
+
+.sidebar-menu > li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
+
+.sidebar-menu > li > a {
+  color: #cbd5e1 !important;
+  padding: 16px 20px !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  border-left: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-menu > li > a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.sidebar-menu > li:hover > a::before {
+  width: 100%;
+}
+
+.sidebar-menu > li:hover > a {
+  color: var(--text-white) !important;
+  border-left-color: var(--primary-light) !important;
+  transform: translateX(5px);
+  background: transparent !important;
+}
+
+.sidebar-menu > li.active > a {
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  border-left-color: var(--accent-color) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-menu > li.active > a::before {
+  width: 100%;
+}
+
+/* Sub-menu styling */
+.sidebar-menu .treeview-menu {
+  background: rgba(0, 0, 0, 0.2) !important;
+  margin: 0;
+}
+
+.sidebar-menu .treeview-menu > li > a {
+  color: #94a3b8 !important;
+  padding: 12px 20px 12px 40px !important;
+  font-size: 0.85rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.sidebar-menu .treeview-menu > li:hover > a {
+  color: var(--text-white) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: translateX(5px);
+}
+
+/* Enhanced Box Styling */
+.box {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 25px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.box:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.box-header {
+  background: var(--bg-primary) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  padding: 20px 25px !important;
+  position: relative;
+}
+
 .box.box-solid.box-primary > .box-header {
-  background-color: #2E8B57;
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  border: none !important;
 }
-.nav-tabs-custom > .nav-tabs > li.active {
-  border-top-color: #2E8B57;
+
+.box-title {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+
+.box-body {
+  padding: 25px !important;
+  background: var(--bg-primary);
+}
+
+/* Value Box Enhancements */
+.small-box {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+  box-shadow: var(--shadow-md) !important;
+  border: none !important;
+  background: var(--gradient-primary) !important;
+}
+
+.small-box:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.small-box .inner {
+  padding: 20px !important;
+  position: relative;
+  z-index: 2;
+}
+
+.small-box .inner h3 {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 10px 0 !important;
+  color: var(--text-white) !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.small-box .inner p {
+  font-size: 1rem !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500 !important;
+}
+
+.small-box .icon {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 1 !important;
+  font-size: 3rem !important;
+  color: rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.small-box:hover .icon {
+  transform: scale(1.1) rotate(5deg);
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Color variations for value boxes */
+.bg-green .small-box {
+  background: var(--gradient-success) !important;
+}
+
+.bg-blue .small-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.bg-purple .small-box {
+  background: linear-gradient(135deg, #667db6 0%, #0082c8 100%) !important;
+}
+
+.bg-orange .small-box {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+}
+
+/* Button Enhancements */
+.btn {
+  border-radius: 8px !important;
+  padding: 12px 24px !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  letter-spacing: 0.025em;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
 .btn-primary {
-  background-color: #2E8B57;
-  border-color: #1E6B4F;
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  box-shadow: var(--shadow-md);
 }
+
 .btn-primary:hover {
-  background-color: #1E6B4F;
-  border-color: #0F4C3A;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  background: var(--gradient-primary) !important;
+}
+
+.btn-success {
+  background: var(--gradient-success) !important;
+  color: var(--text-white) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.btn-block {
+  width: 100% !important;
+  margin-bottom: 15px !important;
+}
+
+/* Tab Navigation Enhancements */
+.nav-tabs-custom {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 25px;
+}
+
+.nav-tabs-custom > .nav-tabs {
+  border-bottom: 1px solid var(--border-light) !important;
+  background: var(--bg-secondary);
+  margin: 0;
+}
+
+.nav-tabs-custom > .nav-tabs > li {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.nav-tabs-custom > .nav-tabs > li > a {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 15px 20px !important;
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+}
+
+.nav-tabs-custom > .nav-tabs > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a::after {
+  width: 100%;
+}
+
+.nav-tabs-custom > .nav-tabs > li:hover > a {
+  background: rgba(37, 99, 235, 0.05) !important;
+  color: var(--primary-color) !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  background: var(--bg-primary) !important;
+  color: var(--primary-color) !important;
+  border-bottom: 3px solid var(--primary-color) !important;
+  font-weight: 600 !important;
+}
+
+.nav-tabs-custom > .tab-content {
+  padding: 25px;
+  background: var(--bg-primary);
+}
+
+/* Form Control Enhancements */
+.form-control {
+  border: 2px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  outline: none !important;
+}
+
+.form-group label {
+  font-weight: 500 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 8px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Select2 and Selectize Enhancements */
+.selectize-input {
+  border: 2px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  background: var(--bg-primary) !important;
+  transition: all 0.3s ease !important;
+}
+
+.selectize-input.focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Data Table Enhancements */
+.dataTables_wrapper {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+}
+
+table.dataTable {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+table.dataTable thead th {
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  border: none !important;
+  padding: 15px 12px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  position: relative !important;
+}
+
+table.dataTable tbody tr {
+  transition: all 0.2s ease !important;
+}
+
+table.dataTable tbody tr:hover {
+  background: rgba(37, 99, 235, 0.05) !important;
+  transform: scale(1.01);
+}
+
+table.dataTable tbody td {
+  padding: 12px !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  vertical-align: middle !important;
+}
+
+/* Alert Enhancements */
+.alert {
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 20px !important;
+  font-weight: 500 !important;
+  box-shadow: var(--shadow-md) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.alert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: currentColor;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+  color: var(--success-color) !important;
+  border-left: 4px solid var(--success-color) !important;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+  color: var(--info-color) !important;
+  border-left: 4px solid var(--info-color) !important;
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+  color: var(--warning-color) !important;
+  border-left: 4px solid var(--warning-color) !important;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%) !important;
+  color: var(--danger-color) !important;
+  border-left: 4px solid var(--danger-color) !important;
+}
+
+/* Code/Text Output Enhancements */
+pre, .shiny-text-output {
+  background: var(--bg-darker) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #374151 !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  font-family: 'JetBrains Mono', 'Monaco', 'Menlo', monospace !important;
+  font-size: 0.85rem !important;
+  line-height: 1.6 !important;
+  overflow-x: auto !important;
+  box-shadow: var(--shadow-md) !important;
+  position: relative !important;
+}
+
+pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+/* Loading Spinner Enhancements */
+.spinner {
+  margin: 40px auto !important;
+  text-align: center !important;
+}
+
+.spinner > div {
+  width: 12px !important;
+  height: 12px !important;
+  background: var(--primary-color) !important;
+  border-radius: 100% !important;
+  display: inline-block !important;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both !important;
+  margin: 0 2px !important;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 40% { 
+    transform: scale(1.0);
+  }
+}
+
+/* Plot Container Enhancements */
+.plotly, .shiny-plot-output {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-md) !important;
+  background: var(--bg-primary) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .box-body {
+    padding: 15px !important;
+  }
+  
+  .main-header .logo {
+    font-size: 1rem !important;
+    padding: 0 15px !important;
+  }
+  
+  .sidebar-menu > li > a {
+    padding: 12px 15px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .small-box .inner {
+    padding: 15px !important;
+  }
+  
+  .small-box .inner h3 {
+    font-size: 1.8rem !important;
+  }
+  
+  .nav-tabs-custom > .nav-tabs > li > a {
+    padding: 12px 15px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Custom utility classes */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.bg-gradient-primary {
+  background: var(--gradient-primary) !important;
+}
+
+.bg-gradient-success {
+  background: var(--gradient-success) !important;
+}
+
+.bg-gradient-climate {
+  background: var(--gradient-climate) !important;
+}
+
+/* Leaflet map enhancements */
+.leaflet-container {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-xl) !important;
+  border: none !important;
+}
+
+.leaflet-popup-content {
+  font-family: 'Inter', sans-serif !important;
+  line-height: 1.5 !important;
+}
+
+/* File input enhancements */
+.form-group input[type='file'] {
+  border: 2px dashed var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  background: var(--bg-secondary) !important;
+  transition: all 0.3s ease !important;
+  text-align: center !important;
+}
+
+.form-group input[type='file']:hover {
+  border-color: var(--primary-color) !important;
+  background: rgba(37, 99, 235, 0.05) !important;
+}
+
+/* Progress bar enhancements */
+.progress {
+  background: var(--bg-tertiary) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) !important;
+}
+
+.progress-bar {
+  background: var(--gradient-primary) !important;
+  transition: width 0.6s ease !important;
+}
+
+/* Enhanced focus states for accessibility */
+*:focus {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+}
+
+button:focus, 
+.btn:focus {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Enhanced checkbox and radio styling */
+input[type='checkbox'],
+input[type='radio'] {
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: var(--primary-color) !important;
+}
+
+/* Improved list styling */
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/* Enhanced HR styling */
+hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(to right, transparent, var(--border-color), transparent) !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-success { background: var(--success-color); }
+.status-warning { background: var(--warning-color); }
+.status-danger { background: var(--danger-color); }
+.status-info { background: var(--info-color); }
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 "
 
@@ -153,7 +975,56 @@ ui <- dashboardPage(
   dashboardBody(
     
     tags$head(
-      tags$style(HTML(climate_css))
+      tags$style(HTML(climate_css)),
+      # Add loading overlay for better UX
+      tags$script(HTML("
+        $(document).ready(function() {
+          // Add loading overlay for better UX
+          $('body').append('<div id=\"loading-overlay\" class=\"loading-overlay\" style=\"display: none;\"><div class=\"loading-spinner\"></div></div>');
+          
+          // Show loading on button clicks
+          $('.btn-primary, .btn-success').click(function() {
+            $('#loading-overlay').fadeIn(300);
+            setTimeout(function() {
+              $('#loading-overlay').fadeOut(300);
+            }, 2000);
+          });
+          
+          // Add smooth scroll animation
+          $('a[href^=\"#\"]').on('click', function(event) {
+            var target = $(this.getAttribute('href'));
+            if(target.length) {
+              event.preventDefault();
+              $('html, body').stop().animate({
+                scrollTop: target.offset().top - 100
+              }, 800);
+            }
+          });
+          
+          // Add entrance animations
+          $('.box').each(function(index) {
+            $(this).css('animation-delay', (index * 0.1) + 's');
+            $(this).addClass('animate-fade-in-up');
+          });
+          
+          // Enhanced hover effects for value boxes
+          $('.small-box').hover(
+            function() {
+              $(this).addClass('animate-pulse');
+            },
+            function() {
+              $(this).removeClass('animate-pulse');
+            }
+          );
+          
+          // Auto-refresh data notification
+          setInterval(function() {
+            if($('.alert-success').length > 0) {
+              $('.alert-success').fadeOut(5000);
+            }
+          }, 10000);
+        });
+      "))
     ),
     
     tabItems(
@@ -182,11 +1053,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Ringkasan Data Iklim", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("overview_climate_plot")
+                  withSpinner(plotlyOutput("overview_climate_plot"), type = 4, color = "#2563eb")
                 ),
                 box(
                   title = "🌾 Produktivitas vs Iklim", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("overview_productivity_plot")
+                  withSpinner(plotlyOutput("overview_productivity_plot"), type = 4, color = "#2563eb")
                 )
               )
       ),
@@ -400,11 +1271,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Distribusi Data", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("descriptive_histogram")
+                  withSpinner(plotlyOutput("descriptive_histogram"), type = 4, color = "#059669")
                 ),
                 box(
                   title = "📦 Boxplot Data", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("descriptive_boxplot")
+                  withSpinner(plotlyOutput("descriptive_boxplot"), type = 4, color = "#059669")
                 )
               )
       ),
@@ -420,13 +1291,13 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "🔗 Matriks Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 9,
-                  plotOutput("correlation_plot")
+                  withSpinner(plotOutput("correlation_plot"), type = 4, color = "#f59e0b")
                 )
               ),
               fluidRow(
                 box(
                   title = "📊 Tabel Korelasi", status = "primary", solidHeader = TRUE, width = 12,
-                  DT::dataTableOutput("correlation_table")
+                  withSpinner(DT::dataTableOutput("correlation_table"), type = 4, color = "#f59e0b")
                 )
               )
       ),
@@ -456,7 +1327,7 @@ ui <- dashboardPage(
                   title = "🧪 Hasil Kruskal Wallis Test", status = "primary", solidHeader = TRUE, width = 9,
                   verbatimTextOutput("kruskal_results"),
                   br(),
-                  plotlyOutput("kruskal_plot")
+                  withSpinner(plotlyOutput("kruskal_plot"), type = 4, color = "#dc2626")
                 )
               )
       ),
@@ -488,11 +1359,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Plot Residual", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("regression_residual_plot")
+                  withSpinner(plotlyOutput("regression_residual_plot"), type = 4, color = "#10b981")
                 ),
                 box(
                   title = "🎯 Prediksi vs Aktual", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("regression_prediction_plot")
+                  withSpinner(plotlyOutput("regression_prediction_plot"), type = 4, color = "#10b981")
                 )
               )
       ),
@@ -512,7 +1383,7 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "📈 Plot Time Series", status = "primary", solidHeader = TRUE, width = 9,
-                  plotlyOutput("timeseries_plot")
+                  withSpinner(plotlyOutput("timeseries_plot"), type = 4, color = "#0ea5e9")
                 )
               ),
               fluidRow(
@@ -568,11 +1439,11 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   title = "📊 Prediksi vs Data Historis", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("prediction_comparison_plot")
+                  withSpinner(plotlyOutput("prediction_comparison_plot"), type = 4, color = "#8b5cf6")
                 ),
                 box(
                   title = "🎯 Sensitivity Analysis", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("sensitivity_plot")
+                  withSpinner(plotlyOutput("sensitivity_plot"), type = 4, color = "#8b5cf6")
                 )
               )
       ),
@@ -602,17 +1473,17 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "📊 Visualisasi Utama", status = "primary", solidHeader = TRUE, width = 9,
-                  plotlyOutput("advanced_plot", height = "500px")
+                  withSpinner(plotlyOutput("advanced_plot", height = "500px"), type = 4, color = "#ec4899")
                 )
               ),
               fluidRow(
                 box(
                   title = "📈 Plot Tambahan 1", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("additional_plot1")
+                  withSpinner(plotlyOutput("additional_plot1"), type = 4, color = "#f97316")
                 ),
                 box(
                   title = "📊 Plot Tambahan 2", status = "primary", solidHeader = TRUE, width = 6,
-                  plotlyOutput("additional_plot2")
+                  withSpinner(plotlyOutput("additional_plot2"), type = 4, color = "#f97316")
                 )
               )
       ),
@@ -636,7 +1507,7 @@ ui <- dashboardPage(
                 ),
                 box(
                   title = "🗺️ Peta Interaktif Jawa Timur", status = "primary", solidHeader = TRUE, width = 9,
-                  leafletOutput("interactive_map", height = "600px")
+                  withSpinner(leafletOutput("interactive_map", height = "600px"), type = 4, color = "#06b6d4")
                 )
               )
       ),
@@ -764,7 +1635,7 @@ ui <- dashboardPage(
                   conditionalPanel(
                     condition = "output.file_uploaded",
                     h5("Preview Data yang Diupload:"),
-                    DT::dataTableOutput("uploaded_preview"),
+                    withSpinner(DT::dataTableOutput("uploaded_preview"), type = 4, color = "#059669"),
                     br(),
                     h5("Status Penggabungan:"),
                     verbatimTextOutput("merge_status"),
@@ -777,7 +1648,7 @@ ui <- dashboardPage(
                           HTML("<strong>✅ Data Berhasil Digabung!</strong><br>
                                Variabel tambahan sekarang tersedia di semua fitur analisis. Silakan refresh halaman untuk melihat variabel baru di dropdown.")),
                       h5("Preview Data Setelah Digabung:"),
-                      DT::dataTableOutput("merged_preview")
+                      withSpinner(DT::dataTableOutput("merged_preview"), type = 4, color = "#059669")
                     )
                   )
                 )
