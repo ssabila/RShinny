@@ -559,14 +559,17 @@ p {
   border: 2px solid var(--primary-color) !important;
   border-radius: 8px !important;
   box-shadow: var(--shadow-lg) !important;
-  max-height: 300px !important;
+  max-height: 400px !important;
   overflow-y: auto !important;
-  z-index: 1050 !important;
+  z-index: 9999 !important;
+  position: absolute !important;
+  width: 100% !important;
 }
 
 .selectize-dropdown-content {
-  max-height: 280px !important;
+  max-height: 380px !important;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 
 .selectize-dropdown .option {
@@ -587,6 +590,92 @@ p {
 
 .selectize-dropdown .option:last-child {
   border-bottom: none !important;
+}
+
+/* Enhanced scrollbar for dropdown */
+.selectize-dropdown::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+.selectize-dropdown::-webkit-scrollbar-track {
+  background: var(--bg-tertiary) !important;
+  border-radius: 4px !important;
+}
+
+.selectize-dropdown::-webkit-scrollbar-thumb {
+  background: var(--primary-color) !important;
+  border-radius: 4px !important;
+  transition: background 0.3s ease !important;
+}
+
+.selectize-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark) !important;
+}
+
+/* Fix for dropdown positioning and visibility */
+.selectize-control.single .selectize-dropdown {
+  border-top: none !important;
+  margin-top: -1px !important;
+}
+
+.selectize-control.multi .selectize-dropdown {
+  border-top: none !important;
+  margin-top: -1px !important;
+}
+
+/* Ensure dropdown shows all content */
+.selectize-dropdown {
+  max-width: none !important;
+  min-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Better scrolling behavior */
+.selectize-dropdown-content {
+  scroll-behavior: smooth !important;
+}
+
+/* Make sure dropdown is visible on mobile */
+@media (max-width: 768px) {
+  .selectize-dropdown {
+    max-height: 300px !important;
+    font-size: 16px !important; /* Prevent zoom on iOS */
+  }
+  
+  .selectize-dropdown .option {
+    padding: 14px 16px !important;
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Override any container overflow that might clip dropdown */
+.box, .box-body, .fluidRow, .col-sm-3, .col-sm-4, .col-sm-6, .col-sm-9, .col-sm-12 {
+  overflow: visible !important;
+}
+
+.form-group {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Ensure selectize container doesn't clip dropdown */
+.selectize-control {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Force dropdown to appear above everything */
+.selectize-dropdown {
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  will-change: transform !important;
+  position: fixed !important;
+}
+
+/* Alternative fix for clipping issues */
+body > .selectize-dropdown {
+  z-index: 99999 !important;
+  position: fixed !important;
 }
 
 /* Data Table Enhancements */
@@ -1078,7 +1167,47 @@ ui <- dashboardPage(
   dashboardBody(
     
     tags$head(
-      tags$style(HTML(climate_css))
+      tags$style(HTML(climate_css)),
+      tags$script(HTML("
+        $(document).ready(function() {
+          // Configure selectize dropdowns
+          $('select').selectize({
+            maxOptions: 1000,  // Allow many options
+            searchField: ['text', 'value'],
+            placeholder: 'Pilih...',
+            render: {
+              option: function(data, escape) {
+                return '<div class=\"option\">' + escape(data.text) + '</div>';
+              }
+            },
+            dropdownParent: 'body',  // Ensure dropdown renders in body
+            onDropdownOpen: function() {
+              // Ensure dropdown is positioned correctly
+              var dropdown = this.$dropdown;
+              var control = this.$control;
+              
+              dropdown.css({
+                'position': 'absolute',
+                'z-index': '9999',
+                'max-height': '400px',
+                'overflow-y': 'auto',
+                'width': control.outerWidth() + 'px'
+              });
+            }
+          });
+          
+          // Re-initialize selectize when content updates
+          $(document).on('shiny:value', function(event) {
+            if (event.target.tagName === 'SELECT') {
+              $(event.target).selectize({
+                maxOptions: 1000,
+                searchField: ['text', 'value'],
+                dropdownParent: 'body'
+              });
+            }
+          });
+        });
+      "))
     ),
     
     tabItems(
