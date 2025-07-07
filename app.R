@@ -21,6 +21,7 @@ library(moments)
 # Enhanced Modern CSS theme for climate change dashboard
 climate_css <- "
 /* Import Google Fonts */
+<<<<<<< HEAD:app1.R
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* Root Variables for Consistent Theming */
@@ -62,6 +63,49 @@ climate_css <- "
   --gradient-success: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
   --gradient-climate: linear-gradient(135deg, #a7f3d0 0%, #d1fae5 50%, #bbf7d0 100%);
   --gradient-forest: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
+=======
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Root Variables for Consistent Theming */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1e40af;
+  --primary-light: #3b82f6;
+  --secondary-color: #059669;
+  --secondary-dark: #047857;
+  --secondary-light: #10b981;
+  --accent-color: #f59e0b;
+  --accent-light: #fbbf24;
+  --danger-color: #dc2626;
+  --warning-color: #f59e0b;
+  --success-color: #059669;
+  --info-color: #0ea5e9;
+  
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --bg-dark: #1e293b;
+  --bg-darker: #0f172a;
+  
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-light: #94a3b8;
+  --text-white: #ffffff;
+  
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-climate: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --gradient-ocean: linear-gradient(135deg, #667db6 0%, #0082c8 50%, #0082c8 50%, #667db6 100%);
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* Global Styles */
@@ -70,8 +114,13 @@ climate_css <- "
 }
 
 body {
+<<<<<<< HEAD:app1.R
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 17px;
+=======
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-secondary);
@@ -86,6 +135,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   margin-bottom: 0.5em;
   color: var(--text-primary);
+<<<<<<< HEAD:app1.R
   font-family: 'Poppins', sans-serif;
 }
 
@@ -94,6 +144,15 @@ h2 { font-size: 2.075rem; line-height: 1.3; }
 h3 { font-size: 1.7rem; line-height: 1.4; }
 h4 { font-size: 1.45rem; line-height: 1.4; }
 h5 { font-size: 1.325rem; line-height: 1.5; }
+=======
+}
+
+h1 { font-size: 2.25rem; line-height: 1.2; }
+h2 { font-size: 1.875rem; line-height: 1.3; }
+h3 { font-size: 1.5rem; line-height: 1.4; }
+h4 { font-size: 1.25rem; line-height: 1.4; }
+h5 { font-size: 1.125rem; line-height: 1.5; }
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 
 p {
   margin-bottom: 1rem;
@@ -123,13 +182,20 @@ p {
   background: transparent !important;
   color: var(--text-white) !important;
   font-weight: 700 !important;
+<<<<<<< HEAD:app1.R
   font-size: 1.6rem !important;
+=======
+  font-size: 1.1rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   padding: 0 20px;
+<<<<<<< HEAD:app1.R
   font-family: 'Poppins', sans-serif !important;
   letter-spacing: 0.5px;
+=======
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .main-header .logo:hover {
@@ -160,15 +226,24 @@ p {
 
 .sidebar-menu > li > a {
   color: #cbd5e1 !important;
+<<<<<<< HEAD:app1.R
   padding: 18px 20px !important;
   font-weight: 600 !important;
   font-size: 1.3rem !important;
+=======
+  padding: 16px 20px !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   transition: all 0.3s ease !important;
   border-left: 3px solid transparent;
   position: relative;
   overflow: hidden;
+<<<<<<< HEAD:app1.R
   font-family: 'Poppins', sans-serif !important;
   letter-spacing: 0.3px;
+=======
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .sidebar-menu > li > a::before {
@@ -213,12 +288,18 @@ p {
 
 .sidebar-menu .treeview-menu > li > a {
   color: #94a3b8 !important;
+<<<<<<< HEAD:app1.R
   padding: 14px 20px 14px 40px !important;
   font-size: 1.2rem !important;
   transition: all 0.3s ease !important;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 500 !important;
   letter-spacing: 0.2px;
+=======
+  padding: 12px 20px 12px 40px !important;
+  font-size: 0.85rem !important;
+  transition: all 0.3s ease !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .sidebar-menu .treeview-menu > li:hover > a {
@@ -257,6 +338,7 @@ p {
   border: none !important;
 }
 
+<<<<<<< HEAD:app1.R
 .box.box-solid.box-primary > .box-header .box-title {
   color: var(--text-white) !important;
   font-weight: 700 !important;
@@ -273,6 +355,17 @@ p {
   letter-spacing: 0.3px;
 }
 
+=======
+.box-title {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 .box-body {
   padding: 25px !important;
   background: var(--bg-primary);
@@ -301,11 +394,16 @@ p {
 }
 
 .small-box .inner h3 {
+<<<<<<< HEAD:app1.R
   font-size: 2.6rem !important;
+=======
+  font-size: 2.2rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   font-weight: 700 !important;
   margin: 0 0 10px 0 !important;
   color: var(--text-white) !important;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+<<<<<<< HEAD:app1.R
   font-family: 'Poppins', sans-serif !important;
 }
 
@@ -316,6 +414,15 @@ p {
   font-weight: 600 !important;
   font-family: 'Poppins', sans-serif !important;
   letter-spacing: 0.3px;
+=======
+}
+
+.small-box .inner p {
+  font-size: 1rem !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500 !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .small-box .icon {
@@ -339,6 +446,7 @@ p {
 }
 
 .bg-blue .small-box {
+<<<<<<< HEAD:app1.R
   background: var(--gradient-primary) !important;
 }
 
@@ -348,11 +456,23 @@ p {
 
 .bg-orange .small-box {
   background: var(--gradient-secondary) !important;
+=======
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.bg-purple .small-box {
+  background: linear-gradient(135deg, #667db6 0%, #0082c8 100%) !important;
+}
+
+.bg-orange .small-box {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* Button Enhancements */
 .btn {
   border-radius: 8px !important;
+<<<<<<< HEAD:app1.R
   padding: 14px 28px !important;
   font-weight: 600 !important;
   font-size: 1.2rem !important;
@@ -363,6 +483,17 @@ p {
   position: relative;
   overflow: hidden;
   font-family: 'Poppins', sans-serif !important;
+=======
+  padding: 12px 24px !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  letter-spacing: 0.025em;
+  position: relative;
+  overflow: hidden;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .btn::before {
@@ -431,6 +562,7 @@ p {
 .nav-tabs-custom > .nav-tabs > li > a {
   border: none !important;
   border-radius: 0 !important;
+<<<<<<< HEAD:app1.R
   padding: 16px 22px !important;
   color: var(--text-primary) !important;
   font-weight: 600 !important;
@@ -439,6 +571,13 @@ p {
   font-family: 'Poppins', sans-serif !important;
   font-size: 1.2rem !important;
   letter-spacing: 0.3px;
+=======
+  padding: 15px 20px !important;
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .nav-tabs-custom > .nav-tabs > li > a::after {
@@ -457,6 +596,7 @@ p {
 }
 
 .nav-tabs-custom > .nav-tabs > li:hover > a {
+<<<<<<< HEAD:app1.R
   background: var(--primary-color) !important;
   color: var(--text-white) !important;
 }
@@ -466,11 +606,23 @@ p {
   color: var(--text-white) !important;
   border-bottom: 3px solid var(--accent-color) !important;
   font-weight: 700 !important;
+=======
+  background: rgba(37, 99, 235, 0.05) !important;
+  color: var(--primary-color) !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  background: var(--bg-primary) !important;
+  color: var(--primary-color) !important;
+  border-bottom: 3px solid var(--primary-color) !important;
+  font-weight: 600 !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .nav-tabs-custom > .tab-content {
   padding: 25px;
   background: var(--bg-primary);
+<<<<<<< HEAD:app1.R
   color: var(--text-primary);
 }
 
@@ -483,12 +635,15 @@ p {
 /* Light background text color */
 .nav-tabs-custom > .nav-tabs > li > a {
   color: var(--text-primary) !important;
+=======
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* Form Control Enhancements */
 .form-control {
   border: 2px solid var(--border-color) !important;
   border-radius: 8px !important;
+<<<<<<< HEAD:app1.R
   padding: 14px 18px !important;
   font-size: 1.2rem !important;
   transition: all 0.3s ease !important;
@@ -496,21 +651,39 @@ p {
   color: var(--text-primary) !important;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 500 !important;
+=======
+  padding: 12px 16px !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 .form-control:focus {
   border-color: var(--primary-color) !important;
+<<<<<<< HEAD:app1.R
   box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
+=======
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   outline: none !important;
 }
 
 .form-group label {
+<<<<<<< HEAD:app1.R
   font-weight: 600 !important;
   color: var(--text-primary) !important;
   margin-bottom: 10px !important;
   font-size: 1.2rem !important;
   font-family: 'Poppins', sans-serif !important;
   letter-spacing: 0.2px;
+=======
+  font-weight: 500 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 8px !important;
+  font-size: 0.9rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* Select2 and Selectize Enhancements */
@@ -524,7 +697,11 @@ p {
 
 .selectize-input.focus {
   border-color: var(--primary-color) !important;
+<<<<<<< HEAD:app1.R
   box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
+=======
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* Data Table Enhancements */
@@ -558,7 +735,11 @@ table.dataTable tbody tr {
 }
 
 table.dataTable tbody tr:hover {
+<<<<<<< HEAD:app1.R
   background: rgba(6, 78, 59, 0.08) !important;
+=======
+  background: rgba(37, 99, 235, 0.05) !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   transform: scale(1.01);
 }
 
@@ -622,7 +803,11 @@ pre, .shiny-text-output {
   border-radius: 8px !important;
   padding: 20px !important;
   font-family: 'JetBrains Mono', 'Monaco', 'Menlo', monospace !important;
+<<<<<<< HEAD:app1.R
   font-size: 1.05rem !important;
+=======
+  font-size: 0.85rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   line-height: 1.6 !important;
   overflow-x: auto !important;
   box-shadow: var(--shadow-md) !important;
@@ -700,13 +885,22 @@ pre::before {
   }
   
   .main-header .logo {
+<<<<<<< HEAD:app1.R
     font-size: 1.4rem !important;
+=======
+    font-size: 1rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
     padding: 0 15px !important;
   }
   
   .sidebar-menu > li > a {
+<<<<<<< HEAD:app1.R
     padding: 16px 15px !important;
     font-size: 1.2rem !important;
+=======
+    padding: 12px 15px !important;
+    font-size: 0.85rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   }
   
   .small-box .inner {
@@ -714,12 +908,21 @@ pre::before {
   }
   
   .small-box .inner h3 {
+<<<<<<< HEAD:app1.R
     font-size: 2rem !important;
   }
   
   .nav-tabs-custom > .nav-tabs > li > a {
     padding: 14px 16px !important;
     font-size: 1.1rem !important;
+=======
+    font-size: 1.8rem !important;
+  }
+  
+  .nav-tabs-custom > .nav-tabs > li > a {
+    padding: 12px 15px !important;
+    font-size: 0.85rem !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
   }
 }
 
@@ -800,10 +1003,15 @@ pre::before {
 }
 
 .leaflet-popup-content {
+<<<<<<< HEAD:app1.R
   font-family: 'Poppins', sans-serif !important;
   line-height: 1.5 !important;
   font-size: 1.15rem !important;
   font-weight: 500 !important;
+=======
+  font-family: 'Inter', sans-serif !important;
+  line-height: 1.5 !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* File input enhancements */
@@ -818,7 +1026,11 @@ pre::before {
 
 .form-group input[type='file']:hover {
   border-color: var(--primary-color) !important;
+<<<<<<< HEAD:app1.R
   background: rgba(6, 78, 59, 0.08) !important;
+=======
+  background: rgba(37, 99, 235, 0.05) !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* Progress bar enhancements */
@@ -844,7 +1056,11 @@ button:focus,
 .btn:focus {
   outline: 2px solid var(--primary-color) !important;
   outline-offset: 2px !important;
+<<<<<<< HEAD:app1.R
   box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
+=======
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
 }
 
 /* Enhanced checkbox and radio styling */
@@ -1022,12 +1238,21 @@ ui <- dashboardPage(
           // Add loading overlay for better UX
           $('body').append('<div id=\"loading-overlay\" class=\"loading-overlay\" style=\"display: none;\"><div class=\"loading-spinner\"></div></div>');
           
+<<<<<<< HEAD:app1.R
           // Show loading only on analysis button clicks
           $('#run_descriptive, #run_correlation, #run_kruskal, #run_regression, #run_timeseries, #run_prediction, #update_viz, #update_map, #merge_data').click(function() {
             $('#loading-overlay').fadeIn(300);
             setTimeout(function() {
               $('#loading-overlay').fadeOut(300);
             }, 3000);
+=======
+          // Show loading on button clicks
+          $('.btn-primary, .btn-success').click(function() {
+            $('#loading-overlay').fadeIn(300);
+            setTimeout(function() {
+              $('#loading-overlay').fadeOut(300);
+            }, 2000);
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
           });
           
           // Add smooth scroll animation
@@ -1092,12 +1317,21 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
+<<<<<<< HEAD:app1.R
                   title = "Ringkasan Data Iklim", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("overview_climate_plot")
                 ),
                 box(
                   title = "Produktivitas vs Iklim", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("overview_productivity_plot")
+=======
+                  title = "📊 Ringkasan Data Iklim", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("overview_climate_plot"), type = 4, color = "#2563eb")
+                ),
+                box(
+                  title = "🌾 Produktivitas vs Iklim", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("overview_productivity_plot"), type = 4, color = "#2563eb")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               )
       ),
@@ -1308,12 +1542,21 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
+<<<<<<< HEAD:app1.R
                   title = "Distribusi Data", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("descriptive_histogram")
                 ),
                 box(
                   title = "Boxplot Data", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("descriptive_boxplot")
+=======
+                  title = "📊 Distribusi Data", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("descriptive_histogram"), type = 4, color = "#059669")
+                ),
+                box(
+                  title = "📦 Boxplot Data", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("descriptive_boxplot"), type = 4, color = "#059669")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               )
       ),
@@ -1328,14 +1571,24 @@ ui <- dashboardPage(
                   actionButton("run_correlation", "Analisis Korelasi", class = "btn-primary", width = "100%")
                 ),
                 box(
+<<<<<<< HEAD:app1.R
                   title = "Matriks Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 9,
                   plotOutput("correlation_plot")
+=======
+                  title = "🔗 Matriks Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 9,
+                  withSpinner(plotOutput("correlation_plot"), type = 4, color = "#f59e0b")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               ),
               fluidRow(
                 box(
+<<<<<<< HEAD:app1.R
                   title = " Tabel Korelasi", status = "primary", solidHeader = TRUE, width = 12,
                   DT::dataTableOutput("correlation_table")
+=======
+                  title = "📊 Tabel Korelasi", status = "primary", solidHeader = TRUE, width = 12,
+                  withSpinner(DT::dataTableOutput("correlation_table"), type = 4, color = "#f59e0b")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               )
       ),
@@ -1365,7 +1618,7 @@ ui <- dashboardPage(
                   title = "Hasil Kruskal Wallis Test", status = "primary", solidHeader = TRUE, width = 9,
                   verbatimTextOutput("kruskal_results"),
                   br(),
-                  plotlyOutput("kruskal_plot")
+                  withSpinner(plotlyOutput("kruskal_plot"), type = 4, color = "#dc2626")
                 )
               )
       ),
@@ -1396,12 +1649,21 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
+<<<<<<< HEAD:app1.R
                   title = "Plot Residual", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("regression_residual_plot")
                 ),
                 box(
                   title = "Prediksi vs Aktual", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("regression_prediction_plot")
+=======
+                  title = "📊 Plot Residual", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("regression_residual_plot"), type = 4, color = "#10b981")
+                ),
+                box(
+                  title = "🎯 Prediksi vs Aktual", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("regression_prediction_plot"), type = 4, color = "#10b981")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               )
       ),
@@ -1420,8 +1682,13 @@ ui <- dashboardPage(
                   actionButton("run_timeseries", "Analisis Time Series", class = "btn-primary", width = "100%")
                 ),
                 box(
+<<<<<<< HEAD:app1.R
                   title = "Plot Time Series", status = "primary", solidHeader = TRUE, width = 9,
                   plotlyOutput("timeseries_plot")
+=======
+                  title = "📈 Plot Time Series", status = "primary", solidHeader = TRUE, width = 9,
+                  withSpinner(plotlyOutput("timeseries_plot"), type = 4, color = "#0ea5e9")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               ),
               fluidRow(
@@ -1476,12 +1743,21 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
+<<<<<<< HEAD:app1.R
                   title = "Prediksi vs Data Historis", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("prediction_comparison_plot")
                 ),
                 box(
                   title = "Sensitivity Analysis", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("sensitivity_plot")
+=======
+                  title = "📊 Prediksi vs Data Historis", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("prediction_comparison_plot"), type = 4, color = "#8b5cf6")
+                ),
+                box(
+                  title = "🎯 Sensitivity Analysis", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("sensitivity_plot"), type = 4, color = "#8b5cf6")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               )
       ),
@@ -1510,18 +1786,32 @@ ui <- dashboardPage(
                   actionButton("update_viz", " Update Visualisasi", class = "btn-primary", width = "100%")
                 ),
                 box(
+<<<<<<< HEAD:app1.R
                   title = " Visualisasi Utama", status = "primary", solidHeader = TRUE, width = 9,
                   plotlyOutput("advanced_plot", height = "500px")
+=======
+                  title = "📊 Visualisasi Utama", status = "primary", solidHeader = TRUE, width = 9,
+                  withSpinner(plotlyOutput("advanced_plot", height = "500px"), type = 4, color = "#ec4899")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               ),
               fluidRow(
                 box(
+<<<<<<< HEAD:app1.R
                   title = " Plot Tambahan 1", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("additional_plot1")
                 ),
                 box(
                   title = " Plot Tambahan 2", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("additional_plot2")
+=======
+                  title = "📈 Plot Tambahan 1", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("additional_plot1"), type = 4, color = "#f97316")
+                ),
+                box(
+                  title = "📊 Plot Tambahan 2", status = "primary", solidHeader = TRUE, width = 6,
+                  withSpinner(plotlyOutput("additional_plot2"), type = 4, color = "#f97316")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               )
       ),
@@ -1544,8 +1834,13 @@ ui <- dashboardPage(
                   actionButton("update_map", "  Perbarui Peta", class = "btn-primary", width = "100%")
                 ),
                 box(
+<<<<<<< HEAD:app1.R
                   title = "  Peta Interaktif Jawa Timur", status = "primary", solidHeader = TRUE, width = 9,
                   leafletOutput("interactive_map", height = "600px")
+=======
+                  title = "🗺️ Peta Interaktif Jawa Timur", status = "primary", solidHeader = TRUE, width = 9,
+                  withSpinner(leafletOutput("interactive_map", height = "600px"), type = 4, color = "#06b6d4")
+>>>>>>> 417fe8ea933327cf26725f92c27fd8f90a1a3c4b:app.R
                 )
               )
       ),
@@ -1673,7 +1968,7 @@ ui <- dashboardPage(
                   conditionalPanel(
                     condition = "output.file_uploaded",
                     h5("Preview Data yang Diupload:"),
-                    DT::dataTableOutput("uploaded_preview"),
+                    withSpinner(DT::dataTableOutput("uploaded_preview"), type = 4, color = "#059669"),
                     br(),
                     h5("Status Penggabungan:"),
                     verbatimTextOutput("merge_status"),
@@ -1686,7 +1981,7 @@ ui <- dashboardPage(
                           HTML("<strong>✅ Data Berhasil Digabung!</strong><br>
                                  Variabel tambahan sekarang tersedia di semua fitur analisis. Silakan refresh halaman untuk melihat variabel baru di dropdown.")),
                       h5("Preview Data Setelah Digabung:"),
-                      DT::dataTableOutput("merged_preview")
+                      withSpinner(DT::dataTableOutput("merged_preview"), type = 4, color = "#059669")
                     )
                   )
                 )
