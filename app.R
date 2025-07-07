@@ -507,21 +507,15 @@ p {
 .main-sidebar, .content-wrapper, .right-side,
 .dashboard-body, .skin-blue .wrapper,
 .content, .container-fluid,
-div[class*="col-"], div[class*="row"] {
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+.col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+.col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+.row, .fluidRow {
   overflow: visible !important;
 }
 
-/* Ultimate dropdown escape - highest priority CSS */
-body > .selectize-dropdown,
-html > .selectize-dropdown {
-  position: fixed !important;
-  z-index: 2147483647 !important; /* Maximum z-index value */
-  transform: translateZ(0) !important;
-  -webkit-transform: translateZ(0) !important;
-  will-change: transform !important;
-}
-
-/* Force remove any clipping from AdminLTE containers */
+/* AdminLTE containers must allow overflow */
 .skin-blue .main-header,
 .skin-blue .main-sidebar,
 .skin-blue .content-wrapper {
@@ -534,21 +528,13 @@ html > .selectize-dropdown {
   z-index: 1 !important;
 }
 
-/* Targeted fix for dropdown containers only */
-.tab-pane, .tabItem, .tab-content,
-[data-tabname="descriptive"],
-[data-tabname="correlation"], 
-[data-tabname="regression"],
-[data-tabname="timeseries"] {
+/* Essential containers must allow dropdown overflow */
+.box, .box-body, .box-header, .form-group, 
+.fluidRow, .row, .col-sm-3, .col-sm-4, .col-sm-6, .col-sm-9, .col-sm-12,
+.col-md-3, .col-md-4, .col-md-6, .col-md-9, .col-md-12,
+.tab-content, .tab-pane, .content-wrapper, .tabItem,
+.shiny-input-container, .selectize-control {
   overflow: visible !important;
-  position: relative !important;
-}
-
-/* Ensure dropdown always on top of everything */
-.selectize-dropdown {
-  z-index: 2147483647 !important;
-  position: fixed !important;
-  transform: translate3d(0, 0, 0) !important;
 }
 
 /* Dark background text color override */
@@ -604,27 +590,26 @@ html > .selectize-dropdown {
   box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
 }
 
-/* Enhanced Select Dropdown Styling */
+/* Essential Select Dropdown Styling - Single Definition */
 .selectize-dropdown {
-  background: var(--bg-primary) !important;
-  border: 2px solid var(--primary-color) !important;
+  background: white !important;
+  border: 2px solid #064e3b !important;
   border-radius: 8px !important;
-  box-shadow: var(--shadow-lg) !important;
+  box-shadow: 0 20px 25px -5px rgba(6, 78, 59, 0.25) !important;
   max-height: 400px !important;
   overflow-y: auto !important;
-  z-index: 9999 !important;
-}
-
-.selectize-dropdown-content {
-  max-height: 380px !important;
-  overflow-y: auto !important;
+  z-index: 2147483647 !important;
+  position: fixed !important;
+  min-width: 200px !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 .selectize-dropdown .option {
   padding: 12px 16px !important;
   font-size: 1.1rem !important;
-  color: var(--text-primary) !important;
-  border-bottom: 1px solid var(--border-light) !important;
+  color: #064e3b !important;
+  background: white !important;
+  border-bottom: 1px solid #dcfce7 !important;
   transition: all 0.2s ease !important;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 500 !important;
@@ -632,8 +617,8 @@ html > .selectize-dropdown {
 
 .selectize-dropdown .option:hover,
 .selectize-dropdown .option.active {
-  background: var(--primary-color) !important;
-  color: var(--text-white) !important;
+  background: #f0fdf4 !important;
+  color: #064e3b !important;
 }
 
 .selectize-dropdown .option:last-child {
@@ -663,80 +648,20 @@ html > .selectize-dropdown {
   }
 }
 
-/* Essential dropdown fixes - Force visibility on ALL containers */
-.box, .box-body, .box-header, .form-group, 
-.fluidRow, .row, .col-sm-3, .col-sm-4, .col-sm-6, .col-sm-9, .col-sm-12,
-.col-md-3, .col-md-4, .col-md-6, .col-md-9, .col-md-12,
-.tab-content, .tab-pane, .content-wrapper,
-.shiny-input-container, .selectize-control {
-  overflow: visible !important;
-}
 
-/* Force dropdown to appear above EVERYTHING */
-.selectize-dropdown {
-  z-index: 99999 !important;
-  position: fixed !important;
-  max-height: 400px !important;
-  overflow-y: auto !important;
-  background: white !important;
-  border: 2px solid #064e3b !important;
-  border-radius: 8px !important;
-  box-shadow: 0 20px 25px -5px rgba(6, 78, 59, 0.25) !important;
-  min-width: 200px !important;
-}
 
-/* Ensure dropdown options are properly styled */
-.selectize-dropdown .option {
-  padding: 12px 16px !important;
-  font-size: 1.1rem !important;
-  border-bottom: 1px solid #dcfce7 !important;
-  transition: all 0.2s ease !important;
-  color: #064e3b !important;
-  background: white !important;
-}
-
-.selectize-dropdown .option:hover {
-  background: #f0fdf4 !important;
-  color: #064e3b !important;
-}
-
-.selectize-dropdown .option:last-child {
-  border-bottom: none !important;
-}
-
-/* Ensure selectize input has proper positioning context */
-.selectize-control.single .selectize-input {
+/* Selectize control positioning */
+.selectize-control {
   position: relative !important;
   z-index: 1000 !important;
 }
 
-/* Specific fixes for problem tabs */
-#descriptive .box, #descriptive .box-body,
-#correlation .box, #correlation .box-body,
-#regression .box, #regression .box-body,
-#timeseries .box, #timeseries .box-body,
-.tab-pane[data-value="descriptive"] .box,
-.tab-pane[data-value="correlation"] .box,
-.tab-pane[data-value="regression"] .box,
-.tab-pane[data-value="timeseries"] .box {
-  overflow: visible !important;
+.selectize-control.single .selectize-input {
   position: relative !important;
-  z-index: auto !important;
+  z-index: 1001 !important;
 }
 
-/* Force all Shiny containers to allow overflow */
-.shiny-input-container, .form-group, .control-label {
-  overflow: visible !important;
-  position: relative !important;
-}
-
-/* Ensure dropdown container can escape any bounds */
-body .selectize-dropdown {
-  position: fixed !important;
-  z-index: 999999 !important;
-}
-
-/* Additional scroll handling for dropdowns */
+/* Scrollbar styling for dropdowns */
 .selectize-dropdown::-webkit-scrollbar {
   width: 6px !important;
 }
@@ -3788,4 +3713,5 @@ server <- function(input, output, session) {
 
 # Run the app
 shinyApp(ui = ui, server = server)
+
 
