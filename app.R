@@ -499,6 +499,56 @@ p {
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow: visible !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Critical override for ALL possible containers that could clip dropdowns */
+.main-sidebar, .content-wrapper, .right-side,
+.dashboard-body, .skin-blue .wrapper,
+.content, .container-fluid,
+div[class*="col-"], div[class*="row"] {
+  overflow: visible !important;
+}
+
+/* Ultimate dropdown escape - highest priority CSS */
+body > .selectize-dropdown,
+html > .selectize-dropdown {
+  position: fixed !important;
+  z-index: 2147483647 !important; /* Maximum z-index value */
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  will-change: transform !important;
+}
+
+/* Force remove any clipping from AdminLTE containers */
+.skin-blue .main-header,
+.skin-blue .main-sidebar,
+.skin-blue .content-wrapper {
+  overflow: visible !important;
+}
+
+/* Ensure all form elements allow dropdown overflow */
+.form-control, .input-group, .form-group {
+  overflow: visible !important;
+  z-index: 1 !important;
+}
+
+/* Targeted fix for dropdown containers only */
+.tab-pane, .tabItem, .tab-content,
+[data-tabname="descriptive"],
+[data-tabname="correlation"], 
+[data-tabname="regression"],
+[data-tabname="timeseries"] {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Ensure dropdown always on top of everything */
+.selectize-dropdown {
+  z-index: 2147483647 !important;
+  position: fixed !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 /* Dark background text color override */
@@ -613,33 +663,97 @@ p {
   }
 }
 
-/* Essential dropdown fixes for proper display */
-.box, .box-body, .form-group {
+/* Essential dropdown fixes - Force visibility on ALL containers */
+.box, .box-body, .box-header, .form-group, 
+.fluidRow, .row, .col-sm-3, .col-sm-4, .col-sm-6, .col-sm-9, .col-sm-12,
+.col-md-3, .col-md-4, .col-md-6, .col-md-9, .col-md-12,
+.tab-content, .tab-pane, .content-wrapper,
+.shiny-input-container, .selectize-control {
   overflow: visible !important;
 }
 
-/* Selectize dropdown enhancements */
+/* Force dropdown to appear above EVERYTHING */
 .selectize-dropdown {
-  z-index: 9999 !important;
-  position: absolute !important;
+  z-index: 99999 !important;
+  position: fixed !important;
   max-height: 400px !important;
   overflow-y: auto !important;
   background: white !important;
   border: 2px solid #064e3b !important;
   border-radius: 8px !important;
-  box-shadow: 0 10px 15px -3px rgba(6, 78, 59, 0.1) !important;
+  box-shadow: 0 20px 25px -5px rgba(6, 78, 59, 0.25) !important;
+  min-width: 200px !important;
 }
 
+/* Ensure dropdown options are properly styled */
 .selectize-dropdown .option {
   padding: 12px 16px !important;
   font-size: 1.1rem !important;
   border-bottom: 1px solid #dcfce7 !important;
   transition: all 0.2s ease !important;
+  color: #064e3b !important;
+  background: white !important;
 }
 
 .selectize-dropdown .option:hover {
   background: #f0fdf4 !important;
   color: #064e3b !important;
+}
+
+.selectize-dropdown .option:last-child {
+  border-bottom: none !important;
+}
+
+/* Ensure selectize input has proper positioning context */
+.selectize-control.single .selectize-input {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* Specific fixes for problem tabs */
+#descriptive .box, #descriptive .box-body,
+#correlation .box, #correlation .box-body,
+#regression .box, #regression .box-body,
+#timeseries .box, #timeseries .box-body,
+.tab-pane[data-value="descriptive"] .box,
+.tab-pane[data-value="correlation"] .box,
+.tab-pane[data-value="regression"] .box,
+.tab-pane[data-value="timeseries"] .box {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: auto !important;
+}
+
+/* Force all Shiny containers to allow overflow */
+.shiny-input-container, .form-group, .control-label {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Ensure dropdown container can escape any bounds */
+body .selectize-dropdown {
+  position: fixed !important;
+  z-index: 999999 !important;
+}
+
+/* Additional scroll handling for dropdowns */
+.selectize-dropdown::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.selectize-dropdown::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 3px !important;
+}
+
+.selectize-dropdown::-webkit-scrollbar-thumb {
+  background: #064e3b !important;
+  border-radius: 3px !important;
+  transition: background 0.3s ease !important;
+}
+
+.selectize-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #022c22 !important;
 }
 
 /* Data Table Enhancements */
@@ -1133,15 +1247,107 @@ ui <- dashboardPage(
     tags$head(
       tags$style(HTML(climate_css)),
       tags$script(HTML("
-        // Basic dropdown configuration
+        // Ultimate dropdown positioning solution
         $(document).ready(function() {
-          // Ensure dropdowns work properly
-          setTimeout(function() {
-            $('.selectize-dropdown').css({
-              'position': 'absolute',
-              'z-index': '9999'
+          
+          // Function to position dropdown perfectly
+          function positionDropdown(dropdown, control) {
+            if (control.length === 0) return;
+            
+            var offset = control.offset();
+            var height = control.outerHeight();
+            var width = control.outerWidth();
+            var windowHeight = $(window).height();
+            var scrollTop = $(window).scrollTop();
+            
+            var topPosition = offset.top + height + 2;
+            var maxHeight = 300;
+            
+            // Check if dropdown would go below viewport
+            if (topPosition + maxHeight > windowHeight + scrollTop) {
+              // Position above the control instead
+              topPosition = offset.top - maxHeight - 2;
+              // But ensure it doesn't go above viewport
+              if (topPosition < scrollTop) {
+                topPosition = offset.top + height + 2;
+                maxHeight = windowHeight + scrollTop - topPosition - 10;
+              }
+            }
+            
+            // Apply positioning with maximum priority
+            dropdown.css({
+              'position': 'fixed !important',
+              'top': topPosition + 'px',
+              'left': offset.left + 'px',
+              'width': Math.max(width, 200) + 'px',
+              'z-index': '2147483647', // Maximum possible z-index
+              'max-height': maxHeight + 'px',
+              'overflow-y': 'auto',
+              'background': 'white',
+              'border': '2px solid #064e3b',
+              'border-radius': '8px',
+              'box-shadow': '0 20px 25px -5px rgba(6, 78, 59, 0.25)',
+              'transform': 'translateZ(0)',
+              'will-change': 'transform'
             });
-          }, 100);
+            
+            // Force it to be appended to body if not already
+            if (dropdown.parent()[0] !== document.body) {
+              dropdown.appendTo('body');
+            }
+          }
+          
+          // Monitor for selectize dropdowns using multiple methods
+          $(document).on('DOMNodeInserted', '.selectize-dropdown', function() {
+            var dropdown = $(this);
+            var control = dropdown.closest('.selectize-control').find('.selectize-input');
+            
+            setTimeout(function() {
+              positionDropdown(dropdown, control);
+            }, 10);
+          });
+          
+          // Also use MutationObserver for better compatibility
+          if (window.MutationObserver) {
+            var observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                $(mutation.addedNodes).find('.selectize-dropdown').each(function() {
+                  var dropdown = $(this);
+                  var control = dropdown.closest('.selectize-control').find('.selectize-input');
+                  
+                  setTimeout(function() {
+                    positionDropdown(dropdown, control);
+                  }, 10);
+                });
+              });
+            });
+            
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true
+            });
+          }
+          
+          // Handle window events to reposition dropdowns
+          $(window).on('resize scroll', function() {
+            $('.selectize-dropdown:visible').each(function() {
+              var dropdown = $(this);
+              var control = dropdown.closest('.selectize-control').find('.selectize-input');
+              positionDropdown(dropdown, control);
+            });
+          });
+          
+          // Force position on focus events
+          $(document).on('focus', '.selectize-input input', function() {
+            var control = $(this).closest('.selectize-control');
+            setTimeout(function() {
+              var dropdown = $('.selectize-dropdown:visible');
+              if (dropdown.length > 0) {
+                positionDropdown(dropdown, control.find('.selectize-input'));
+              }
+            }, 50);
+          });
+          
         });
       "))
     ),
