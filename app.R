@@ -511,125 +511,6 @@ p {
   color: var(--text-primary) !important;
 }
 
-/* Enhanced Select Input Styling */
-.form-control {
-  border: 2px solid var(--border-light) !important;
-  border-radius: 8px !important;
-  padding: 12px 16px !important;
-  font-size: 1.1rem !important;
-  transition: all 0.3s ease !important;
-  background: var(--bg-primary) !important;
-  color: var(--text-primary) !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 500 !important;
-}
-
-.form-control:focus {
-  border-color: var(--primary-color) !important;
-  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.1) !important;
-  background: var(--bg-primary) !important;
-}
-
-/* Select dropdown improvements */
-.selectize-dropdown {
-  background: var(--bg-primary) !important;
-  border: 2px solid var(--primary-color) !important;
-  border-radius: 8px !important;
-  box-shadow: var(--shadow-lg) !important;
-  max-height: 300px !important;
-  overflow-y: auto !important;
-  z-index: 1050 !important;
-}
-
-.selectize-dropdown-content {
-  max-height: 280px !important;
-  overflow-y: auto !important;
-}
-
-.selectize-dropdown .option {
-  padding: 12px 16px !important;
-  font-size: 1.1rem !important;
-  color: var(--text-primary) !important;
-  border-bottom: 1px solid var(--border-light) !important;
-  transition: all 0.2s ease !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 500 !important;
-}
-
-.selectize-dropdown .option:hover,
-.selectize-dropdown .option.active {
-  background: var(--primary-color) !important;
-  color: var(--text-white) !important;
-}
-
-.selectize-dropdown .option:last-child {
-  border-bottom: none !important;
-}
-
-.selectize-input {
-  border: 2px solid var(--border-light) !important;
-  border-radius: 8px !important;
-  padding: 12px 16px !important;
-  background: var(--bg-primary) !important;
-  min-height: 48px !important;
-  font-size: 1.1rem !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 500 !important;
-}
-
-.selectize-input.focus {
-  border-color: var(--primary-color) !important;
-  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.1) !important;
-}
-
-.selectize-input input {
-  font-size: 1.1rem !important;
-  color: var(--text-primary) !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 500 !important;
-}
-
-/* Responsive improvements for cards */
-@media (max-width: 768px) {
-  .box {
-    margin-bottom: 15px;
-    min-height: 150px;
-  }
-  
-  .box-body {
-    padding: 15px !important;
-  }
-}
-
-/* Ensure proper spacing and alignment */
-.fluidRow {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.fluidRow [class*="col-"] {
-  padding-left: 7.5px !important;
-  padding-right: 7.5px !important;
-}
-
-/* Grid system improvements */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -7.5px;
-  margin-right: -7.5px;
-}
-
-.row > [class*="col-"] {
-  display: flex;
-  flex-direction: column;
-}
-
-.row > [class*="col-"] > .box {
-  flex: 1;
-  margin-bottom: 15px;
-}
-
 /* Form Control Enhancements */
 .form-control {
   border: 2px solid var(--border-color) !important;
@@ -670,6 +551,42 @@ p {
 .selectize-input.focus {
   border-color: var(--primary-color) !important;
   box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
+}
+
+/* Enhanced Select Dropdown Styling */
+.selectize-dropdown {
+  background: var(--bg-primary) !important;
+  border: 2px solid var(--primary-color) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-lg) !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  z-index: 1050 !important;
+}
+
+.selectize-dropdown-content {
+  max-height: 280px !important;
+  overflow-y: auto !important;
+}
+
+.selectize-dropdown .option {
+  padding: 12px 16px !important;
+  font-size: 1.1rem !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  transition: all 0.2s ease !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.selectize-dropdown .option:hover,
+.selectize-dropdown .option.active {
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+}
+
+.selectize-dropdown .option:last-child {
+  border-bottom: none !important;
 }
 
 /* Data Table Enhancements */
