@@ -613,24 +613,33 @@ p {
   }
 }
 
-/* Simple fix for dropdown overflow - only essential containers */
-.box, .box-body {
+/* Essential dropdown fixes for proper display */
+.box, .box-body, .form-group {
   overflow: visible !important;
 }
 
-.form-group {
-  overflow: visible !important;
-  position: relative !important;
-}
-
-/* Basic selectize styling */
-.selectize-control {
-  position: relative !important;
-}
-
+/* Selectize dropdown enhancements */
 .selectize-dropdown {
   z-index: 9999 !important;
   position: absolute !important;
+  max-height: 400px !important;
+  overflow-y: auto !important;
+  background: white !important;
+  border: 2px solid #064e3b !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 15px -3px rgba(6, 78, 59, 0.1) !important;
+}
+
+.selectize-dropdown .option {
+  padding: 12px 16px !important;
+  font-size: 1.1rem !important;
+  border-bottom: 1px solid #dcfce7 !important;
+  transition: all 0.2s ease !important;
+}
+
+.selectize-dropdown .option:hover {
+  background: #f0fdf4 !important;
+  color: #064e3b !important;
 }
 
 /* Data Table Enhancements */
@@ -1124,12 +1133,15 @@ ui <- dashboardPage(
     tags$head(
       tags$style(HTML(climate_css)),
       tags$script(HTML("
-        // Simple fix for dropdown visibility without conflicts
+        // Basic dropdown configuration
         $(document).ready(function() {
-          // Set basic configuration for all selects
-          Shiny.addCustomMessageHandler('selectizeOptions', function(message) {
-            // This will be handled by Shiny's selectize automatically
-          });
+          // Ensure dropdowns work properly
+          setTimeout(function() {
+            $('.selectize-dropdown').css({
+              'position': 'absolute',
+              'z-index': '9999'
+            });
+          }, 100);
         });
       "))
     ),
@@ -3570,3 +3582,4 @@ server <- function(input, output, session) {
 
 # Run the app
 shinyApp(ui = ui, server = server)
+
