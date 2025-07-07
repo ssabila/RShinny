@@ -18,39 +18,901 @@ library(MASS)
 library(shinycssloaders)
 library(moments)
 
-# Custom CSS theme for climate change
+# Enhanced Modern CSS theme for climate change dashboard
 climate_css <- "
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Root Variables for Consistent Theming */
+:root {
+  --primary-color: #064e3b;
+  --primary-dark: #022c22;
+  --primary-light: #065f46;
+  --secondary-color: #059669;
+  --secondary-dark: #047857;
+  --secondary-light: #10b981;
+  --accent-color: #fbbf24;
+  --accent-light: #fcd34d;
+  --danger-color: #dc2626;
+  --warning-color: #f59e0b;
+  --success-color: #059669;
+  --info-color: #0891b2;
+  
+  --bg-primary: #ffffff;
+  --bg-secondary: #f0fdf4;
+  --bg-tertiary: #dcfce7;
+  --bg-dark: #07290e;
+  --bg-darker: #0a1b0b;
+  
+  --text-primary: #064e3b;
+  --text-secondary: #166534;
+  --text-light: #22c55e;
+  --text-white: #ffffff;
+  
+  --border-color: #bbf7d0;
+  --border-light: #dcfce7;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(6, 78, 59, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(6, 78, 59, 0.1), 0 2px 4px -1px rgba(6, 78, 59, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(6, 78, 59, 0.1), 0 4px 6px -2px rgba(6, 78, 59, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(6, 78, 59, 0.1), 0 10px 10px -5px rgba(6, 78, 59, 0.04);
+  
+  --gradient-primary: linear-gradient(135deg, #064e3b 0%, #022c22 50%, #065f46 100%);
+  --gradient-secondary: linear-gradient(135deg, #059669 0%, #047857 50%, #10b981 100%);
+  --gradient-success: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+  --gradient-climate: linear-gradient(135deg, #a7f3d0 0%, #d1fae5 50%, #bbf7d0 100%);
+  --gradient-forest: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 { font-size: 2.45rem; line-height: 1.2; }
+h2 { font-size: 2.075rem; line-height: 1.3; }
+h3 { font-size: 1.7rem; line-height: 1.4; }
+h4 { font-size: 1.45rem; line-height: 1.4; }
+h5 { font-size: 1.325rem; line-height: 1.5; }
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Main Layout Styling */
 .content-wrapper, .right-side {
-  background-color: #F0FFF0;
+  background: var(--bg-secondary) !important;
+  min-height: 100vh;
 }
+
+/* Header Enhancements */
+.main-header {
+  background: var(--gradient-primary) !important;
+  border: none !important;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+}
+
 .main-header .navbar {
-  background-color: #1E6B4F !important;
+  background: transparent !important;
+  border: none !important;
 }
+
 .main-header .logo {
-  background-color: #1E6B4F !important;
+  background: transparent !important;
+  color: var(--text-white) !important;
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.5px;
 }
+
+.main-header .logo:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Sidebar Styling */
+.main-sidebar {
+  background: var(--bg-dark) !important;
+  box-shadow: var(--shadow-xl);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .skin-blue .main-sidebar {
-  background-color: #1E4D3B;
+  background: var(--bg-dark) !important;
 }
-.skin-blue .sidebar-menu > li.active > a {
-  background-color: #2E8B57;
+
+.sidebar-menu {
+  margin: 0;
+  padding: 20px 0;
 }
-.skin-blue .sidebar-menu > li:hover > a {
-  background-color: #2E8B57;
+
+.sidebar-menu > li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
+
+.sidebar-menu > li > a {
+  color: #cbd5e1 !important;
+  padding: 18px 20px !important;
+  font-weight: 600 !important;
+  font-size: 1.3rem !important;
+  transition: all 0.3s ease !important;
+  border-left: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.3px;
+}
+
+.sidebar-menu > li > a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.sidebar-menu > li:hover > a::before {
+  width: 100%;
+}
+
+.sidebar-menu > li:hover > a {
+  color: var(--text-white) !important;
+  border-left-color: var(--primary-light) !important;
+  transform: translateX(5px);
+  background: transparent !important;
+}
+
+.sidebar-menu > li.active > a {
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  border-left-color: var(--accent-color) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-menu > li.active > a::before {
+  width: 100%;
+}
+
+/* Sub-menu styling */
+.sidebar-menu .treeview-menu {
+  background: rgba(0, 0, 0, 0.2) !important;
+  margin: 0;
+}
+
+.sidebar-menu .treeview-menu > li > a {
+  color: #94a3b8 !important;
+  padding: 14px 20px 14px 40px !important;
+  font-size: 1.2rem !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2px;
+}
+
+.sidebar-menu .treeview-menu > li:hover > a {
+  color: var(--text-white) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: translateX(5px);
+}
+
+/* Enhanced Box Styling */
+.box {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 25px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.box:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.box-header {
+  background: var(--bg-primary) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  padding: 20px 25px !important;
+  position: relative;
+}
+
 .box.box-solid.box-primary > .box-header {
-  background-color: #2E8B57;
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  border: none !important;
 }
-.nav-tabs-custom > .nav-tabs > li.active {
-  border-top-color: #2E8B57;
+
+.box.box-solid.box-primary > .box-header .box-title {
+  color: var(--text-white) !important;
+  font-weight: 700 !important;
 }
+
+.box-title {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.3px;
+}
+
+.box-body {
+  padding: 25px !important;
+  background: var(--bg-primary);
+}
+
+/* Value Box Enhancements */
+.small-box {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+  box-shadow: var(--shadow-md) !important;
+  border: none !important;
+  background: var(--gradient-primary) !important;
+}
+
+.small-box:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.small-box .inner {
+  padding: 20px !important;
+  position: relative;
+  z-index: 2;
+}
+
+.small-box .inner h3 {
+  font-size: 2.6rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 10px 0 !important;
+  color: var(--text-white) !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.small-box .inner p {
+  font-size: 1.3rem !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.3px;
+}
+
+.small-box .icon {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 1 !important;
+  font-size: 3rem !important;
+  color: rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.small-box:hover .icon {
+  transform: scale(1.1) rotate(5deg);
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Color variations for value boxes */
+.bg-green .small-box {
+  background: var(--gradient-success) !important;
+}
+
+.bg-blue .small-box {
+  background: var(--gradient-primary) !important;
+}
+
+.bg-purple .small-box {
+  background: var(--gradient-forest) !important;
+}
+
+.bg-orange .small-box {
+  background: var(--gradient-secondary) !important;
+}
+
+/* Button Enhancements */
+.btn {
+  border-radius: 8px !important;
+  padding: 14px 28px !important;
+  font-weight: 600 !important;
+  font-size: 1.2rem !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  letter-spacing: 0.4px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
 .btn-primary {
-  background-color: #2E8B57;
-  border-color: #1E6B4F;
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  box-shadow: var(--shadow-md);
 }
+
 .btn-primary:hover {
-  background-color: #1E6B4F;
-  border-color: #0F4C3A;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  background: var(--gradient-primary) !important;
+}
+
+.btn-success {
+  background: var(--gradient-success) !important;
+  color: var(--text-white) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.btn-block {
+  width: 100% !important;
+  margin-bottom: 15px !important;
+}
+
+/* Tab Navigation Enhancements */
+.nav-tabs-custom {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 25px;
+}
+
+.nav-tabs-custom > .nav-tabs {
+  border-bottom: 1px solid var(--border-light) !important;
+  background: var(--bg-secondary);
+  margin: 0;
+}
+
+.nav-tabs-custom > .nav-tabs > li {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.nav-tabs-custom > .nav-tabs > li > a {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 16px 22px !important;
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.3px;
+}
+
+.nav-tabs-custom > .nav-tabs > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a::after {
+  width: 100%;
+}
+
+.nav-tabs-custom > .nav-tabs > li:hover > a {
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+  border-bottom: 3px solid var(--accent-color) !important;
+  font-weight: 700 !important;
+}
+
+.nav-tabs-custom > .tab-content {
+  padding: 25px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Dark background text color override */
+.nav-tabs-custom > .nav-tabs > li.active > a,
+.nav-tabs-custom > .nav-tabs > li:hover > a {
+  color: var(--text-white) !important;
+}
+
+/* Light background text color */
+.nav-tabs-custom > .nav-tabs > li > a {
+  color: var(--text-primary) !important;
+}
+
+/* Form Control Enhancements */
+.form-control {
+  border: 2px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 14px 18px !important;
+  font-size: 1.2rem !important;
+  transition: all 0.3s ease !important;
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
+  outline: none !important;
+}
+
+.form-group label {
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 10px !important;
+  font-size: 1.2rem !important;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.2px;
+}
+
+/* Select2 and Selectize Enhancements */
+.selectize-input {
+  border: 2px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  background: var(--bg-primary) !important;
+  transition: all 0.3s ease !important;
+}
+
+.selectize-input.focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
+}
+
+/* Data Table Enhancements */
+.dataTables_wrapper {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+}
+
+table.dataTable {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+table.dataTable thead th {
+  background: var(--gradient-primary) !important;
+  color: var(--text-white) !important;
+  border: none !important;
+  padding: 15px 12px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  position: relative !important;
+}
+
+table.dataTable tbody tr {
+  transition: all 0.2s ease !important;
+}
+
+table.dataTable tbody tr:hover {
+  background: rgba(6, 78, 59, 0.08) !important;
+  transform: scale(1.01);
+}
+
+table.dataTable tbody td {
+  padding: 12px !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  vertical-align: middle !important;
+}
+
+/* Alert Enhancements */
+.alert {
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 20px !important;
+  font-weight: 500 !important;
+  box-shadow: var(--shadow-md) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.alert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: currentColor;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+  color: var(--success-color) !important;
+  border-left: 4px solid var(--success-color) !important;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+  color: var(--info-color) !important;
+  border-left: 4px solid var(--info-color) !important;
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+  color: var(--warning-color) !important;
+  border-left: 4px solid var(--warning-color) !important;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%) !important;
+  color: var(--danger-color) !important;
+  border-left: 4px solid var(--danger-color) !important;
+}
+
+/* Code/Text Output Enhancements */
+pre, .shiny-text-output {
+  background: var(--bg-darker) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #374151 !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  font-family: 'JetBrains Mono', 'Monaco', 'Menlo', monospace !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+  overflow-x: auto !important;
+  box-shadow: var(--shadow-md) !important;
+  position: relative !important;
+}
+
+pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+/* Loading Spinner Enhancements */
+.spinner {
+  margin: 40px auto !important;
+  text-align: center !important;
+}
+
+.spinner > div {
+  width: 12px !important;
+  height: 12px !important;
+  background: var(--primary-color) !important;
+  border-radius: 100% !important;
+  display: inline-block !important;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both !important;
+  margin: 0 2px !important;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 40% { 
+    transform: scale(1.0);
+  }
+}
+
+/* Plot Container Enhancements */
+.plotly, .shiny-plot-output {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-md) !important;
+  background: var(--bg-primary) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .box-body {
+    padding: 15px !important;
+  }
+  
+  .main-header .logo {
+    font-size: 1.4rem !important;
+    padding: 0 15px !important;
+  }
+  
+  .sidebar-menu > li > a {
+    padding: 16px 15px !important;
+    font-size: 1.2rem !important;
+  }
+  
+  .small-box .inner {
+    padding: 15px !important;
+  }
+  
+  .small-box .inner h3 {
+    font-size: 2rem !important;
+  }
+  
+  .nav-tabs-custom > .nav-tabs > li > a {
+    padding: 14px 16px !important;
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Custom utility classes */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.bg-gradient-primary {
+  background: var(--gradient-primary) !important;
+}
+
+.bg-gradient-success {
+  background: var(--gradient-success) !important;
+}
+
+.bg-gradient-climate {
+  background: var(--gradient-climate) !important;
+}
+
+/* Leaflet map enhancements */
+.leaflet-container {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-xl) !important;
+  border: none !important;
+}
+
+.leaflet-popup-content {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.5 !important;
+  font-size: 1.15rem !important;
+  font-weight: 500 !important;
+}
+
+/* File input enhancements */
+.form-group input[type='file'] {
+  border: 2px dashed var(--border-color) !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  background: var(--bg-secondary) !important;
+  transition: all 0.3s ease !important;
+  text-align: center !important;
+}
+
+.form-group input[type='file']:hover {
+  border-color: var(--primary-color) !important;
+  background: rgba(6, 78, 59, 0.08) !important;
+}
+
+/* Progress bar enhancements */
+.progress {
+  background: var(--bg-tertiary) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1) !important;
+}
+
+.progress-bar {
+  background: var(--gradient-primary) !important;
+  transition: width 0.6s ease !important;
+}
+
+/* Enhanced focus states for accessibility */
+*:focus {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+}
+
+button:focus, 
+.btn:focus {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15) !important;
+}
+
+/* Enhanced checkbox and radio styling */
+input[type='checkbox'],
+input[type='radio'] {
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: var(--primary-color) !important;
+}
+
+/* Improved list styling */
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/* Enhanced HR styling */
+hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(to right, transparent, var(--border-color), transparent) !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-success { background: var(--success-color); }
+.status-warning { background: var(--warning-color); }
+.status-danger { background: var(--danger-color); }
+.status-info { background: var(--info-color); }
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 "
 
@@ -122,8 +984,8 @@ ui <- dashboardPage(
   
   # Header
   dashboardHeader(
-    title = "🌍 Climate Change Dashboard - Jawa Timur",
-    titleWidth = 350
+    title = " Climate Change Dashboard - Jawa Timur",
+    titleWidth = 450
   ),
   
   # Sidebar
@@ -131,21 +993,21 @@ ui <- dashboardPage(
     width = 280,
     sidebarMenu(
       id = "tabs",
-      menuItem("🏠 Dashboard Overview", tabName = "overview", icon = icon("home")),
-      menuItem("📖 Guide Penggunaan", tabName = "guide", icon = icon("question-circle")),
-      menuItem("📊 Analisis Deskriptif", tabName = "descriptive", icon = icon("chart-bar")),
-      menuItem("🔗 Analisis Inferensia", tabName = "inferential", icon = icon("project-diagram"),
+      menuItem("Dashboard Overview", tabName = "overview", icon = icon("home")),
+      menuItem("Guide Penggunaan", tabName = "guide", icon = icon("question-circle")),
+      menuItem("Analisis Deskriptif", tabName = "descriptive", icon = icon("chart-bar")),
+      menuItem("Analisis Inferensia", tabName = "inferential", icon = icon("project-diagram"),
                menuSubItem("Korelasi Spearman", tabName = "correlation"),
                menuSubItem("Kruskal Wallis Test", tabName = "kruskal"),
                menuSubItem("Regresi Robust", tabName = "regression")
       ),
-      menuItem("📈 Time Series Analysis", tabName = "timeseries", icon = icon("chart-line")),
-      menuItem("🔮 Prediksi & Simulasi", tabName = "prediction", icon = icon("magic")),
-      menuItem("📊 Visualisasi Lanjutan", tabName = "advanced_viz", icon = icon("chart-pie")),
-      menuItem("🗺️ Visualisasi Spasial", tabName = "spatial", icon = icon("map")),
-      menuItem("📝 Catatan Riset", tabName = "research", icon = icon("book")),
-      menuItem("⬇️ Download Data", tabName = "download", icon = icon("download")),
-      menuItem("⬆️ Upload Data", tabName = "upload", icon = icon("upload"))
+      menuItem("Time Series Analysis", tabName = "timeseries", icon = icon("chart-line")),
+      menuItem("Prediksi & Simulasi", tabName = "prediction", icon = icon("magic")),
+      menuItem("Visualisasi Lanjutan", tabName = "advanced_viz", icon = icon("chart-pie")),
+      menuItem("Visualisasi Spasial", tabName = "spatial", icon = icon("map")),
+      menuItem("Catatan Riset", tabName = "research", icon = icon("book")),
+      menuItem("Download Data", tabName = "download", icon = icon("download")),
+      menuItem("Upload Data", tabName = "upload", icon = icon("upload"))
     )
   ),
   
@@ -153,7 +1015,56 @@ ui <- dashboardPage(
   dashboardBody(
     
     tags$head(
-      tags$style(HTML(climate_css))
+      tags$style(HTML(climate_css)),
+      # Add loading overlay for better UX
+      tags$script(HTML("
+        $(document).ready(function() {
+          // Add loading overlay for better UX
+          $('body').append('<div id=\"loading-overlay\" class=\"loading-overlay\" style=\"display: none;\"><div class=\"loading-spinner\"></div></div>');
+          
+          // Show loading only on analysis button clicks
+          $('#run_descriptive, #run_correlation, #run_kruskal, #run_regression, #run_timeseries, #run_prediction, #update_viz, #update_map, #merge_data').click(function() {
+            $('#loading-overlay').fadeIn(300);
+            setTimeout(function() {
+              $('#loading-overlay').fadeOut(300);
+            }, 3000);
+          });
+          
+          // Add smooth scroll animation
+          $('a[href^=\"#\"]').on('click', function(event) {
+            var target = $(this.getAttribute('href'));
+            if(target.length) {
+              event.preventDefault();
+              $('html, body').stop().animate({
+                scrollTop: target.offset().top - 100
+              }, 800);
+            }
+          });
+          
+          // Add entrance animations
+          $('.box').each(function(index) {
+            $(this).css('animation-delay', (index * 0.1) + 's');
+            $(this).addClass('animate-fade-in-up');
+          });
+          
+          // Enhanced hover effects for value boxes
+          $('.small-box').hover(
+            function() {
+              $(this).addClass('animate-pulse');
+            },
+            function() {
+              $(this).removeClass('animate-pulse');
+            }
+          );
+          
+          // Auto-refresh data notification
+          setInterval(function() {
+            if($('.alert-success').length > 0) {
+              $('.alert-success').fadeOut(5000);
+            }
+          }, 10000);
+        });
+      "))
     ),
     
     tabItems(
@@ -161,7 +1072,7 @@ ui <- dashboardPage(
       tabItem(tabName = "overview",
               fluidRow(
                 box(
-                  title = "🌍 Climate Change Dashboard - Jawa Timur", status = "primary", solidHeader = TRUE, width = 12,
+                  title = "Climate Change Dashboard - Jawa Timur", status = "primary", solidHeader = TRUE, width = 12,
                   h4("Selamat datang di Dashboard Analisis Perubahan Iklim Jawa Timur"),
                   p("Dashboard ini menyediakan analisis komprehensif tentang data iklim dan produktivitas pertanian di 38 daerah Jawa Timur periode 2020-2024."),
                   conditionalPanel(
@@ -181,11 +1092,11 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
-                  title = "📊 Ringkasan Data Iklim", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Ringkasan Data Iklim", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("overview_climate_plot")
                 ),
                 box(
-                  title = "🌾 Produktivitas vs Iklim", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Produktivitas vs Iklim", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("overview_productivity_plot")
                 )
               )
@@ -195,24 +1106,24 @@ ui <- dashboardPage(
       tabItem(tabName = "guide",
               fluidRow(
                 box(
-                  title = "📖 Panduan Penggunaan Dashboard Climate Change", status = "primary", solidHeader = TRUE, width = 12,
+                  title = "Panduan Penggunaan Dashboard Climate Change", status = "primary", solidHeader = TRUE, width = 12,
                   tabsetPanel(
-                    tabPanel("🚀 Memulai",
+                    tabPanel("Penggunaan",
                              br(),
                              h4("Selamat Datang di Dashboard Climate Change Jawa Timur!"),
                              p("Dashboard ini dirancang untuk membantu Anda menganalisis data iklim dan produktivitas pertanian di Jawa Timur. Berikut adalah langkah-langkah untuk memulai:"),
                              
-                             h5("1. 📊 Dashboard Overview"),
+                             h5("1. Dashboard Overview"),
                              p("• Mulai dari tab 'Dashboard Overview' untuk melihat ringkasan data"),
                              p("• Lihat informasi dasar seperti jumlah daerah, tahun observasi, dan variabel"),
                              p("• Perhatikan grafik ringkasan untuk mendapat gambaran umum"),
                              
-                             h5("2. ⬆️ Upload Data (Opsional)"),
+                             h5("2. Upload Data (Opsional)"),
                              p("• Jika Anda memiliki variabel tambahan, gunakan tab 'Upload Data'"),
                              p("• File harus berformat CSV/Excel dengan kolom: Nama_Daerah, Bulan, Tahun"),
                              p("• Setelah upload, data akan otomatis tersedia di semua fitur analisis"),
                              
-                             h5("3. 📈 Mulai Analisis"),
+                             h5("3. Mulai Analisis"),
                              p("• Pilih jenis analisis sesuai kebutuhan Anda"),
                              p("• Setiap tab memiliki pengaturan filter dan parameter"),
                              p("• Hasil akan ditampilkan dalam bentuk grafik, tabel, dan interpretasi"),
@@ -221,11 +1132,11 @@ ui <- dashboardPage(
                                  HTML("<strong>💡 Tips:</strong> Mulai dengan Analisis Deskriptif untuk memahami karakteristik data, kemudian lanjut ke analisis yang lebih kompleks."))
                     ),
                     
-                    tabPanel("📊 Fitur Analisis",
+                    tabPanel("Fitur Analisis",
                              br(),
                              h4("Fitur-Fitur Analisis yang Tersedia:"),
                              
-                             h5("1. 📊 Analisis Deskriptif"),
+                             h5("1. Analisis Deskriptif"),
                              tags$ul(
                                tags$li("Statistik dasar (mean, median, std dev, dll.)"),
                                tags$li("Uji normalitas (Shapiro-Wilk, Anderson-Darling, KS)"),
@@ -233,7 +1144,7 @@ ui <- dashboardPage(
                                tags$li("Filter berdasarkan tahun dan daerah")
                              ),
                              
-                             h5("2. 🔗 Analisis Korelasi Spearman"),
+                             h5("2. Analisis Korelasi Spearman"),
                              tags$ul(
                                tags$li("Mengukur hubungan monoton antar variabel"),
                                tags$li("Matriks korelasi visual dan numerik"),
@@ -241,15 +1152,14 @@ ui <- dashboardPage(
                                tags$li("Interpretasi kekuatan korelasi")
                              ),
                              
-                             h5("3. 🧪 Kruskal Wallis Test"),
+                             h5("3. Kruskal Wallis Test"),
                              tags$ul(
                                tags$li("Uji perbedaan median antar kelompok"),
                                tags$li("Pengelompokan berdasarkan tahun atau daerah"),
                                tags$li("Visualisasi boxplot dengan interpretasi"),
-                               tags$li("Cocok untuk data non-normal")
                              ),
                              
-                             h5("4. 📈 Regresi Robust"),
+                             h5("4. Regresi Robust"),
                              tags$ul(
                                tags$li("Model regresi tahan outlier"),
                                tags$li("Pemilihan variabel dependen dan independen"),
@@ -257,7 +1167,7 @@ ui <- dashboardPage(
                                tags$li("Interpretasi koefisien model")
                              ),
                              
-                             h5("5. 📈 Time Series Analysis"),
+                             h5("5. Time Series Analysis"),
                              tags$ul(
                                tags$li("Analisis tren temporal data iklim"),
                                tags$li("Uji stasioneritas (ADF, KPSS)"),
@@ -265,7 +1175,7 @@ ui <- dashboardPage(
                                tags$li("Interpretasi komponen trend dan seasonal")
                              ),
                              
-                             h5("6. 🔮 Prediksi & Simulasi"),
+                             h5("6. Prediksi & Simulasi"),
                              tags$ul(
                                tags$li("Prediksi berdasarkan input variabel iklim"),
                                tags$li("Confidence interval untuk prediksi"),
@@ -274,11 +1184,11 @@ ui <- dashboardPage(
                              )
                     ),
                     
-                    tabPanel("🗺️ Visualisasi",
+                    tabPanel(" Visualisasi",
                              br(),
                              h4("Fitur Visualisasi yang Tersedia:"),
                              
-                             h5("1. 📊 Visualisasi Lanjutan"),
+                             h5("1. Visualisasi Lanjutan"),
                              tags$ul(
                                tags$li("Heatmap korelasi interaktif"),
                                tags$li("Scatter plot matrix"),
@@ -286,7 +1196,7 @@ ui <- dashboardPage(
                                tags$li("Radar chart profil iklim")
                              ),
                              
-                             h5("2. 🗺️ Visualisasi Spasial"),
+                             h5("2.  Visualisasi Spasial"),
                              tags$ul(
                                tags$li("Peta interaktif Jawa Timur"),
                                tags$li("Visualisasi data per daerah"),
@@ -295,20 +1205,19 @@ ui <- dashboardPage(
                              ),
                              
                              h5("Tips Visualisasi:"),
-                             div(class = "alert alert-success",
                                  tags$ul(
                                    tags$li("Gunakan filter untuk fokus pada periode atau wilayah tertentu"),
                                    tags$li("Hover mouse pada grafik untuk informasi detail"),
                                    tags$li("Peta interaktif dapat di-zoom dan di-pan"),
                                    tags$li("Semua grafik dapat di-export sebagai gambar")
-                                 ))
+                                 )
                     ),
                     
-                    tabPanel("💾 Data & Download",
+                    tabPanel("Data & Download",
                              br(),
                              h4("Mengelola Data dan Download:"),
                              
-                             h5("1. ⬆️ Upload Data Tambahan"),
+                             h5("1. Upload Data Tambahan"),
                              p("Format file yang didukung:"),
                              tags$ul(
                                tags$li("CSV (.csv)"),
@@ -322,14 +1231,14 @@ ui <- dashboardPage(
                                tags$li("Periode (tahun-bulan) harus ada yang overlapping")
                              ),
                              
-                             h5("2. ⬇️ Download Hasil"),
+                             h5("2. Download Hasil"),
                              p("Anda dapat mendownload:"),
                              tags$ul(
                                tags$li("Data mentah (termasuk data yang sudah digabung)"),
                                tags$li("Hasil analisis dalam format CSV")
                              ),
                              
-                             h5("3. 📝 Catatan Riset"),
+                             h5("3. Catatan Riset"),
                              p("Gunakan tab 'Catatan Riset' untuk:"),
                              tags$ul(
                                tags$li("Memahami metodologi yang digunakan"),
@@ -339,7 +1248,7 @@ ui <- dashboardPage(
                              )
                     ),
                     
-                    tabPanel("❓ FAQ & Tips",
+                    tabPanel("FAQ & Tips",
                              br(),
                              h4("Frequently Asked Questions:"),
                              
@@ -376,7 +1285,7 @@ ui <- dashboardPage(
       tabItem(tabName = "descriptive",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Analisis", status = "primary", solidHeader = TRUE, width = 3,
+                  title = "Pengaturan Analisis", status = "primary", solidHeader = TRUE, width = 3,
                   selectInput("desc_variable", "Pilih Variabel:", 
                               choices = c("Produktivitas", "Curah_Hujan", "Suhu", 
                                           "Radiasi_Matahari", "Kelembapan", 
@@ -384,26 +1293,26 @@ ui <- dashboardPage(
                   selectInput("desc_year", "Pilih Tahun:", choices = NULL),
                   selectInput("desc_region", "Pilih Daerah:", choices = NULL),
                   checkboxInput("normality_test", "Uji Normalitas", value = TRUE),
-                  actionButton("run_descriptive", "🔍 Analisis", class = "btn-primary", width = "100%")
+                  actionButton("run_descriptive", "Analisis", class = "btn-primary", width = "100%")
                 ),
                 box(
-                  title = "📈 Statistik Deskriptif", status = "primary", solidHeader = TRUE, width = 9,
+                  title = "Statistik Deskriptif", status = "primary", solidHeader = TRUE, width = 9,
                   verbatimTextOutput("descriptive_stats"),
                   br(),
                   conditionalPanel(
                     condition = "input.normality_test",
-                    h4("🧪 Hasil Uji Normalitas"),
+                    h4(" Hasil Uji Normalitas"),
                     verbatimTextOutput("normality_results")
                   )
                 )
               ),
               fluidRow(
                 box(
-                  title = "📊 Distribusi Data", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Distribusi Data", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("descriptive_histogram")
                 ),
                 box(
-                  title = "📦 Boxplot Data", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Boxplot Data", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("descriptive_boxplot")
                 )
               )
@@ -413,19 +1322,19 @@ ui <- dashboardPage(
       tabItem(tabName = "correlation",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 3,
+                  title = "Pengaturan Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 3,
                   selectInput("corr_year", "Pilih Tahun:", choices = c("Semua", 2020:2024), selected = "Semua"),
                   selectInput("corr_region", "Pilih Daerah:", choices = NULL),
-                  actionButton("run_correlation", "🔗 Analisis Korelasi", class = "btn-primary", width = "100%")
+                  actionButton("run_correlation", "Analisis Korelasi", class = "btn-primary", width = "100%")
                 ),
                 box(
-                  title = "🔗 Matriks Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 9,
+                  title = "Matriks Korelasi Spearman", status = "primary", solidHeader = TRUE, width = 9,
                   plotOutput("correlation_plot")
                 )
               ),
               fluidRow(
                 box(
-                  title = "📊 Tabel Korelasi", status = "primary", solidHeader = TRUE, width = 12,
+                  title = " Tabel Korelasi", status = "primary", solidHeader = TRUE, width = 12,
                   DT::dataTableOutput("correlation_table")
                 )
               )
@@ -435,7 +1344,7 @@ ui <- dashboardPage(
       tabItem(tabName = "kruskal",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Kruskal Wallis", status = "primary", solidHeader = TRUE, width = 3,
+                  title = "Pengaturan Kruskal Wallis", status = "primary", solidHeader = TRUE, width = 3,
                   selectInput("kw_variable", "Pilih Variabel Dependen:", 
                               choices = c("Produktivitas", "Curah_Hujan", "Suhu", 
                                           "Radiasi_Matahari", "Kelembapan", 
@@ -450,10 +1359,10 @@ ui <- dashboardPage(
                     condition = "input.kw_grouping == 'Daerah'",
                     selectInput("kw_year_filter", "Filter Tahun:", choices = 2020:2024, selected = 2024)
                   ),
-                  actionButton("run_kruskal", "🧪 Uji Kruskal Wallis", class = "btn-primary", width = "100%")
+                  actionButton("run_kruskal", "Uji Kruskal Wallis", class = "btn-primary", width = "100%")
                 ),
                 box(
-                  title = "🧪 Hasil Kruskal Wallis Test", status = "primary", solidHeader = TRUE, width = 9,
+                  title = "Hasil Kruskal Wallis Test", status = "primary", solidHeader = TRUE, width = 9,
                   verbatimTextOutput("kruskal_results"),
                   br(),
                   plotlyOutput("kruskal_plot")
@@ -465,7 +1374,7 @@ ui <- dashboardPage(
       tabItem(tabName = "regression",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Regresi Robust", status = "primary", solidHeader = TRUE, width = 3,
+                  title = "Pengaturan Regresi Robust", status = "primary", solidHeader = TRUE, width = 3,
                   selectInput("reg_dependent", "Variabel Dependen:", 
                               choices = c("Produktivitas", "Curah_Hujan", "Suhu", 
                                           "Radiasi_Matahari", "Kelembapan", 
@@ -478,20 +1387,20 @@ ui <- dashboardPage(
                                      selected = c("Suhu", "Curah_Hujan", "NDVI")),
                   selectInput("reg_year", "Pilih Tahun:", choices = c("Semua", 2020:2024), selected = "Semua"),
                   selectInput("reg_region", "Pilih Daerah:", choices = NULL),
-                  actionButton("run_regression", "📈 Analisis Regresi", class = "btn-primary", width = "100%")
+                  actionButton("run_regression", "Analisis Regresi", class = "btn-primary", width = "100%")
                 ),
                 box(
-                  title = "📈 Hasil Regresi Robust", status = "primary", solidHeader = TRUE, width = 9,
+                  title = "Hasil Regresi Robust", status = "primary", solidHeader = TRUE, width = 9,
                   verbatimTextOutput("regression_results")
                 )
               ),
               fluidRow(
                 box(
-                  title = "📊 Plot Residual", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Plot Residual", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("regression_residual_plot")
                 ),
                 box(
-                  title = "🎯 Prediksi vs Aktual", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Prediksi vs Aktual", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("regression_prediction_plot")
                 )
               )
@@ -501,35 +1410,35 @@ ui <- dashboardPage(
       tabItem(tabName = "timeseries",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Time Series", status = "primary", solidHeader = TRUE, width = 3,
+                  title = "Pengaturan Time Series", status = "primary", solidHeader = TRUE, width = 3,
                   selectInput("ts_variable", "Pilih Variabel:", 
                               choices = c("Produktivitas", "Curah_Hujan", "Suhu", 
                                           "Radiasi_Matahari", "Kelembapan", 
                                           "NDVI", "CO", "Soil_Moisture")),
                   selectInput("ts_region", "Pilih Daerah:", choices = NULL),
                   checkboxInput("ts_trend", "Tampilkan Trend", value = TRUE),
-                  actionButton("run_timeseries", "📈 Analisis Time Series", class = "btn-primary", width = "100%")
+                  actionButton("run_timeseries", "Analisis Time Series", class = "btn-primary", width = "100%")
                 ),
                 box(
-                  title = "📈 Plot Time Series", status = "primary", solidHeader = TRUE, width = 9,
+                  title = "Plot Time Series", status = "primary", solidHeader = TRUE, width = 9,
                   plotlyOutput("timeseries_plot")
                 )
               ),
               fluidRow(
                 box(
-                  title = "🧪 Interpretasi Stasioneritas & Model", status = "primary", solidHeader = TRUE, width = 12,
+                  title = "Interpretasi Stasioneritas & Model", status = "primary", solidHeader = TRUE, width = 12,
                   fluidRow(
                     column(6,
-                           h5("📊 Hasil Uji Stasioneritas:"),
+                           h5("Hasil Uji Stasioneritas:"),
                            verbatimTextOutput("timeseries_tests")
                     ),
                     column(6,
-                           h5("📈 Model ARIMA Terbaik:"),
+                           h5("Model ARIMA Terbaik:"),
                            verbatimTextOutput("timeseries_model")
                     )
                   ),
                   br(),
-                  h5("💡 Interpretasi:"),
+                  h5("Interpretasi:"),
                   verbatimTextOutput("timeseries_interpretation")
                 )
               )
@@ -539,7 +1448,7 @@ ui <- dashboardPage(
       tabItem(tabName = "prediction",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Prediksi", status = "primary", solidHeader = TRUE, width = 4,
+                  title = "Pengaturan Prediksi", status = "primary", solidHeader = TRUE, width = 4,
                   selectInput("pred_target", "Variabel Target:", 
                               choices = c("Produktivitas", "NDVI", "Suhu"), 
                               selected = "Produktivitas"),
@@ -551,10 +1460,10 @@ ui <- dashboardPage(
                   numericInput("pred_ndvi", "NDVI:", value = 0.6, min = 0.3, max = 0.9, step = 0.01),
                   numericInput("pred_co", "CO (mol/m²):", value = 0.025, min = 0.015, max = 0.04, step = 0.001),
                   numericInput("pred_soil", "Soil Moisture:", value = 0.4, min = 0.2, max = 0.6, step = 0.01),
-                  actionButton("run_prediction", "🔮 Prediksi", class = "btn-success", width = "100%")
+                  actionButton("run_prediction", "Prediksi", class = "btn-success", width = "100%")
                 ),
                 box(
-                  title = "🔮 Hasil Prediksi", status = "primary", solidHeader = TRUE, width = 8,
+                  title = "Hasil Prediksi", status = "primary", solidHeader = TRUE, width = 8,
                   h4("Model yang Digunakan:"),
                   verbatimTextOutput("prediction_model_info"),
                   br(),
@@ -567,11 +1476,11 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
-                  title = "📊 Prediksi vs Data Historis", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Prediksi vs Data Historis", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("prediction_comparison_plot")
                 ),
                 box(
-                  title = "🎯 Sensitivity Analysis", status = "primary", solidHeader = TRUE, width = 6,
+                  title = "Sensitivity Analysis", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("sensitivity_plot")
                 )
               )
@@ -581,7 +1490,7 @@ ui <- dashboardPage(
       tabItem(tabName = "advanced_viz",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Visualisasi", status = "primary", solidHeader = TRUE, width = 3,
+                  title = " Pengaturan Visualisasi", status = "primary", solidHeader = TRUE, width = 3,
                   selectInput("viz_type", "Jenis Visualisasi:", 
                               choices = c("Heatmap Korelasi" = "heatmap",
                                           "Scatter Matrix" = "scatter_matrix",
@@ -598,20 +1507,20 @@ ui <- dashboardPage(
                     condition = "input.viz_type == 'radar'",
                     selectInput("radar_region", "Pilih Daerah:", choices = NULL)
                   ),
-                  actionButton("update_viz", "🎨 Update Visualisasi", class = "btn-primary", width = "100%")
+                  actionButton("update_viz", " Update Visualisasi", class = "btn-primary", width = "100%")
                 ),
                 box(
-                  title = "📊 Visualisasi Utama", status = "primary", solidHeader = TRUE, width = 9,
+                  title = " Visualisasi Utama", status = "primary", solidHeader = TRUE, width = 9,
                   plotlyOutput("advanced_plot", height = "500px")
                 )
               ),
               fluidRow(
                 box(
-                  title = "📈 Plot Tambahan 1", status = "primary", solidHeader = TRUE, width = 6,
+                  title = " Plot Tambahan 1", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("additional_plot1")
                 ),
                 box(
-                  title = "📊 Plot Tambahan 2", status = "primary", solidHeader = TRUE, width = 6,
+                  title = " Plot Tambahan 2", status = "primary", solidHeader = TRUE, width = 6,
                   plotlyOutput("additional_plot2")
                 )
               )
@@ -621,7 +1530,7 @@ ui <- dashboardPage(
       tabItem(tabName = "spatial",
               fluidRow(
                 box(
-                  title = "⚙️ Pengaturan Peta", status = "primary", solidHeader = TRUE, width = 3,
+                  title = " Pengaturan Peta", status = "primary", solidHeader = TRUE, width = 3,
                   selectInput("map_variable", "Pilih Variabel:", 
                               choices = c("Produktivitas", "Curah_Hujan", "Suhu", 
                                           "Radiasi_Matahari", "Kelembapan", 
@@ -632,10 +1541,10 @@ ui <- dashboardPage(
                   radioButtons("map_aggregation", "Agregasi:", 
                                choices = c("Rata-rata" = "mean", "Median" = "median", "Maksimum" = "max"),
                                selected = "mean"),
-                  actionButton("update_map", "🗺️ Perbarui Peta", class = "btn-primary", width = "100%")
+                  actionButton("update_map", "  Perbarui Peta", class = "btn-primary", width = "100%")
                 ),
                 box(
-                  title = "🗺️ Peta Interaktif Jawa Timur", status = "primary", solidHeader = TRUE, width = 9,
+                  title = "  Peta Interaktif Jawa Timur", status = "primary", solidHeader = TRUE, width = 9,
                   leafletOutput("interactive_map", height = "600px")
                 )
               )
@@ -645,9 +1554,9 @@ ui <- dashboardPage(
       tabItem(tabName = "research",
               fluidRow(
                 box(
-                  title = "📝 Dokumentasi Penelitian", status = "primary", solidHeader = TRUE, width = 12,
+                  title = " Dokumentasi Penelitian", status = "primary", solidHeader = TRUE, width = 12,
                   tabsetPanel(
-                    tabPanel("📊 Data yang Digunakan",
+                    tabPanel(" Data yang Digunakan",
                              h4("Sumber Data"),
                              p("Data iklim dan produktivitas pertanian Jawa Timur periode 2020-2024"),
                              h4("Variabel yang Dianalisis:"),
@@ -665,51 +1574,51 @@ ui <- dashboardPage(
                              p("38 Kabupaten/Kota di Jawa Timur dengan total 2,280 observasi")
                     ),
                     
-                    tabPanel("🔄 Alur Analisis",
+                    tabPanel("Alur Analisis",
                              h4("Tahapan Analisis:"),
                              tags$ol(
-                               tags$li("📈 Analisis Deskriptif: Statistik dasar dan uji normalitas"),
-                               tags$li("🔗 Analisis Korelasi: Spearman rank correlation"),
-                               tags$li("🧪 Uji Perbedaan: Kruskal Wallis test"),
-                               tags$li("📊 Regresi Robust: Modeling hubungan antar variabel"),
-                               tags$li("📈 Time Series: Analisis tren temporal"),
-                               tags$li("🗺️ Visualisasi Spasial: Pemetaan interaktif")
+                               tags$li("Analisis Deskriptif: Statistik dasar dan uji normalitas"),
+                               tags$li("Analisis Korelasi: Spearman rank correlation"),
+                               tags$li("Uji Perbedaan: Kruskal Wallis test"),
+                               tags$li("Regresi Robust: Modeling hubungan antar variabel"),
+                               tags$li("Time Series: Analisis tren temporal"),
+                               tags$li(" Visualisasi Spasial: Pemetaan interaktif")
                              ),
                              h4("Metodologi:"),
                              p("Menggunakan pendekatan statistik non-parametrik karena sifat data iklim yang tidak selalu terdistribusi normal.")
                     ),
                     
-                    tabPanel("🎯 Hasil Penting",
+                    tabPanel("Hasil Penting",
                              h4("Temuan Utama:"),
                              tags$ul(
-                               tags$li("📊 Variabilitas iklim antar daerah dan waktu"),
-                               tags$li("🔗 Korelasi antara variabel iklim dan produktivitas"),
-                               tags$li("📈 Tren perubahan iklim jangka pendek"),
-                               tags$li("🗺️ Pola spasial distribusi variabel iklim")
+                               tags$li("Variabilitas iklim antar daerah dan waktu"),
+                               tags$li("Korelasi antara variabel iklim dan produktivitas"),
+                               tags$li("Tren perubahan iklim jangka pendek"),
+                               tags$li(" Pola spasial distribusi variabel iklim")
                              ),
                              br(),
                              h4("Implikasi Kebijakan:"),
                              tags$ul(
-                               tags$li("🌾 Adaptasi pertanian terhadap perubahan iklim"),
-                               tags$li("💧 Manajemen sumber daya air"),
-                               tags$li("🌱 Konservasi lahan dan vegetasi"),
-                               tags$li("📋 Perencanaan pembangunan berkelanjutan")
+                               tags$li("Adaptasi pertanian terhadap perubahan iklim"),
+                               tags$li("Manajemen sumber daya air"),
+                               tags$li("Konservasi lahan dan vegetasi"),
+                               tags$li("Perencanaan pembangunan berkelanjutan")
                              )
                     ),
                     
-                    tabPanel("📖 Interpretasi Statistika",
+                    tabPanel("Interpretasi Statistika",
                              h4("Interpretasi Hasil Analisis:"),
                              br(),
-                             h5("🔗 Korelasi Spearman:"),
+                             h5("Korelasi Spearman:"),
                              p("Mengukur kekuatan hubungan monoton antar variabel. Nilai mendekati ±1 menunjukkan hubungan yang kuat."),
                              br(),
-                             h5("🧪 Kruskal Wallis Test:"),
+                             h5("Kruskal Wallis Test:"),
                              p("Menguji perbedaan median antar kelompok. P-value < 0.05 menunjukkan perbedaan signifikan."),
                              br(),
-                             h5("📈 Regresi Robust:"),
+                             h5("Regresi Robust:"),
                              p("Model yang tahan terhadap outlier, cocok untuk data iklim yang sering mengandung nilai ekstrem."),
                              br(),
-                             h5("📊 Time Series:"),
+                             h5("Time Series:"),
                              p("Analisis komponen trend, seasonal, dan irregular untuk memahami pola temporal.")
                     )
                   )
@@ -721,12 +1630,12 @@ ui <- dashboardPage(
       tabItem(tabName = "download",
               fluidRow(
                 box(
-                  title = "⬇️ Download Data dan Hasil", status = "primary", solidHeader = TRUE, width = 12,
+                  title = "Download Data dan Hasil", status = "primary", solidHeader = TRUE, width = 12,
                   h4("Pilih data yang ingin didownload:"),
                   br(),
                   fluidRow(
                     column(6,
-                           h5("📊 Data Mentah"),
+                           h5("Data Mentah"),
                            downloadButton("download_raw_data", "Download Data Asli", class = "btn-primary btn-block"),
                            br(), br(),
                            p("Data lengkap dalam format CSV dengan semua variabel iklim"),
@@ -737,7 +1646,7 @@ ui <- dashboardPage(
                            )
                     ),
                     column(6,
-                           h5("📈 Hasil Analisis"),
+                           h5("Hasil Analisis"),
                            downloadButton("download_analysis", "Download Hasil Analisis", class = "btn-success btn-block"),
                            br(), br(),
                            p("Hasil korelasi, regresi, dan uji statistik dalam format CSV")
@@ -751,7 +1660,7 @@ ui <- dashboardPage(
       tabItem(tabName = "upload",
               fluidRow(
                 box(
-                  title = "⬆️ Upload Variabel Tambahan", status = "primary", solidHeader = TRUE, width = 12,
+                  title = "Upload Variabel Tambahan", status = "primary", solidHeader = TRUE, width = 12,
                   h4("Upload data variabel tambahan (opsional)"),
                   p("File harus berformat CSV atau Excel dengan kolom: Nama_Daerah, Bulan, Tahun, dan variabel baru"),
                   p(tags$b("Maksimum ukuran file: 50MB")),
@@ -775,7 +1684,7 @@ ui <- dashboardPage(
                       condition = "output.data_merged",
                       div(class = "alert alert-success",
                           HTML("<strong>✅ Data Berhasil Digabung!</strong><br>
-                               Variabel tambahan sekarang tersedia di semua fitur analisis. Silakan refresh halaman untuk melihat variabel baru di dropdown.")),
+                                 Variabel tambahan sekarang tersedia di semua fitur analisis. Silakan refresh halaman untuk melihat variabel baru di dropdown.")),
                       h5("Preview Data Setelah Digabung:"),
                       DT::dataTableOutput("merged_preview")
                     )
