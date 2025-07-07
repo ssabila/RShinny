@@ -239,11 +239,23 @@ p {
   overflow: hidden;
   transition: all 0.3s ease;
   position: relative;
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 
 .box:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-xl);
+}
+
+/* Ensure box content fills available space */
+.box-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .box-header {
@@ -497,6 +509,125 @@ p {
 /* Light background text color */
 .nav-tabs-custom > .nav-tabs > li > a {
   color: var(--text-primary) !important;
+}
+
+/* Enhanced Select Input Styling */
+.form-control {
+  border: 2px solid var(--border-light) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 1.1rem !important;
+  transition: all 0.3s ease !important;
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.1) !important;
+  background: var(--bg-primary) !important;
+}
+
+/* Select dropdown improvements */
+.selectize-dropdown {
+  background: var(--bg-primary) !important;
+  border: 2px solid var(--primary-color) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-lg) !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  z-index: 1050 !important;
+}
+
+.selectize-dropdown-content {
+  max-height: 280px !important;
+  overflow-y: auto !important;
+}
+
+.selectize-dropdown .option {
+  padding: 12px 16px !important;
+  font-size: 1.1rem !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  transition: all 0.2s ease !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.selectize-dropdown .option:hover,
+.selectize-dropdown .option.active {
+  background: var(--primary-color) !important;
+  color: var(--text-white) !important;
+}
+
+.selectize-dropdown .option:last-child {
+  border-bottom: none !important;
+}
+
+.selectize-input {
+  border: 2px solid var(--border-light) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  background: var(--bg-primary) !important;
+  min-height: 48px !important;
+  font-size: 1.1rem !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.selectize-input.focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.1) !important;
+}
+
+.selectize-input input {
+  font-size: 1.1rem !important;
+  color: var(--text-primary) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* Responsive improvements for cards */
+@media (max-width: 768px) {
+  .box {
+    margin-bottom: 15px;
+    min-height: 150px;
+  }
+  
+  .box-body {
+    padding: 15px !important;
+  }
+}
+
+/* Ensure proper spacing and alignment */
+.fluidRow {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.fluidRow [class*="col-"] {
+  padding-left: 7.5px !important;
+  padding-right: 7.5px !important;
+}
+
+/* Grid system improvements */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -7.5px;
+  margin-right: -7.5px;
+}
+
+.row > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.row > [class*="col-"] > .box {
+  flex: 1;
+  margin-bottom: 15px;
 }
 
 /* Form Control Enhancements */
@@ -1020,6 +1151,7 @@ ui <- dashboardPage(
       menuItem(" Visualisasi Lanjutan", tabName = "advanced_viz", icon = icon("chart-pie")),
       menuItem("️ Visualisasi Spasial", tabName = "spatial", icon = icon("map")),
       menuItem(" Catatan Riset", tabName = "research", icon = icon("book")),
+      menuItem("📋 Metadata", tabName = "metadata", icon = icon("info-circle")),
       menuItem("️ Download Data", tabName = "download", icon = icon("download")),
       menuItem("️ Upload Data", tabName = "upload", icon = icon("upload"))
     )
@@ -1597,6 +1729,146 @@ ui <- dashboardPage(
               )
       ),
       
+      # Metadata Tab
+      tabItem(tabName = "metadata",
+              fluidRow(
+                box(
+                  title = "📋 Metadata Dashboard", status = "primary", solidHeader = TRUE, width = 12,
+                  tabsetPanel(
+                    tabPanel("📊 Struktural",
+                             br(),
+                             h4("Struktur Data dan Sistem"),
+                             
+                             h5("🏗️ Arsitektur Dashboard:"),
+                             tags$ul(
+                               tags$li("Platform: R Shiny Framework"),
+                               tags$li("Frontend: HTML5, CSS3, Bootstrap"),
+                               tags$li("Backend: R dengan packages statistik"),
+                               tags$li("Visualisasi: plotly, ggplot2, leaflet"),
+                               tags$li("Database: In-memory R data.frame")
+                             ),
+                             
+                             br(),
+                             h5("📁 Struktur Database:"),
+                             tags$div(style = "background-color: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace;",
+                               "Dataset utama: 1_DATA JATIM_GABUNG.xlsx", br(),
+                               "├── Dimensi: 2,280 baris × 11 kolom", br(),
+                               "├── Kolom Identifikasi:", br(),
+                               "│   ├── Nama_Daerah (38 kabupaten/kota)", br(),
+                               "│   ├── Bulan (1-12)", br(),
+                               "│   └── Tahun (2020-2024)", br(),
+                               "└── Kolom Variabel Iklim:", br(),
+                               "    ├── Produktivitas", br(),
+                               "    ├── Curah_Hujan (mm/hari)", br(),
+                               "    ├── Suhu (°C)", br(),
+                               "    ├── Radiasi_Matahari (10⁴ j/m²)", br(),
+                               "    ├── Kelembapan (%)", br(),
+                               "    ├── NDVI (index)", br(),
+                               "    ├── CO (mol/m²)", br(),
+                               "    └── Soil_Moisture (ratio)"
+                             ),
+                             
+                             br(),
+                             h5("🔄 Alur Pemrosesan Data:"),
+                             tags$ol(
+                               tags$li("📥 Input: Excel/CSV → R data.frame"),
+                               tags$li("🔍 Validasi: Cek kolom wajib dan tipe data"),
+                               tags$li("🧹 Pembersihan: Handle missing values"),
+                               tags$li("🔗 Integrasi: Merge dengan data upload"),
+                               tags$li("📊 Analisis: Statistik dan modeling"),
+                               tags$li("📈 Visualisasi: Interactive plots"),
+                               tags$li("💾 Output: Download hasil analisis")
+                             ),
+                             
+                             br(),
+                             h5("⚙️ Konfigurasi Sistem:"),
+                             tags$ul(
+                               tags$li("Memory limit: 50MB per upload"),
+                               tags$li("Session timeout: Auto (browser dependent)"),
+                               tags$li("Concurrent users: Unlimited (server dependent)"),
+                               tags$li("Export formats: PNG, PDF, CSV")
+                             )
+                    ),
+                    
+                    tabPanel("📚 Referensi",
+                             br(),
+                             h4("Referensi Metodologi dan Sumber"),
+                             
+                             h5("📖 Metode Statistik:"),
+                             tags$ul(
+                               tags$li(tags$b("Spearman Rank Correlation:"), 
+                                      " Spearman, C. (1904). The proof and measurement of association between two things. American Journal of Psychology, 15, 72-101."),
+                               tags$li(tags$b("Kruskal-Wallis Test:"), 
+                                      " Kruskal, W.H. & Wallis, W.A. (1952). Use of ranks in one-criterion variance analysis. Journal of the American Statistical Association, 47(260), 583-621."),
+                               tags$li(tags$b("Robust Regression:"), 
+                                      " Huber, P.J. (1973). Robust regression: Asymptotics, conjectures and Monte Carlo. The Annals of Statistics, 1(5), 799-821."),
+                               tags$li(tags$b("ARIMA Modeling:"), 
+                                      " Box, G.E.P., Jenkins, G.M., Reinsel, G.C., & Ljung, G.M. (2015). Time Series Analysis: Forecasting and Control. 5th Edition, Wiley.")
+                             ),
+                             
+                             br(),
+                             h5("💻 Teknologi dan Packages:"),
+                             
+                             h6("Core R Packages:"),
+                             tags$ul(
+                               tags$li(tags$code("shiny"), " - Web application framework"),
+                               tags$li(tags$code("shinydashboard"), " - Dashboard layout"),
+                               tags$li(tags$code("DT"), " - Interactive data tables"),
+                               tags$li(tags$code("plotly"), " - Interactive visualizations"),
+                               tags$li(tags$code("leaflet"), " - Interactive maps")
+                             ),
+                             
+                             h6("Data Processing:"),
+                             tags$ul(
+                               tags$li(tags$code("readxl"), " - Excel file reading"),
+                               tags$li(tags$code("dplyr"), " - Data manipulation"),
+                               tags$li(tags$code("tidyr"), " - Data tidying")
+                             ),
+                             
+                             h6("Statistical Analysis:"),
+                             tags$ul(
+                               tags$li(tags$code("corrplot"), " - Correlation matrix visualization"),
+                               tags$li(tags$code("VIM"), " - Missing value imputation"),
+                               tags$li(tags$code("forecast"), " - Time series forecasting"),
+                               tags$li(tags$code("tseries"), " - Time series analysis"),
+                               tags$li(tags$code("nortest"), " - Normality tests"),
+                               tags$li(tags$code("robust"), " - Robust statistical methods"),
+                               tags$li(tags$code("MASS"), " - Modern applied statistics"),
+                               tags$li(tags$code("moments"), " - Statistical moments")
+                             ),
+                             
+                             br(),
+                             h5("🌍 Sumber Data Iklim:"),
+                             tags$ul(
+                               tags$li("BMKG (Badan Meteorologi, Klimatologi, dan Geofisika)"),
+                               tags$li("Copernicus Climate Data Store (CDS)"),
+                               tags$li("NASA Earth Data"),
+                               tags$li("BPS Jawa Timur (produktivitas pertanian)")
+                             ),
+                             
+                             br(),
+                             h5("📊 Standar Data Quality:"),
+                             tags$ul(
+                               tags$li("✅ Completeness: > 90% data tersedia per variabel"),
+                               tags$li("✅ Consistency: Format standar untuk semua periode"),
+                               tags$li("✅ Accuracy: Validasi dengan multiple sources"),
+                               tags$li("✅ Timeliness: Updated data availability"),
+                               tags$li("✅ Validity: Range checks untuk setiap variabel")
+                             ),
+                             
+                             br(),
+                             h5("🔗 External APIs dan Services:"),
+                             tags$ul(
+                               tags$li("OpenStreetMap: Base map untuk visualisasi spasial"),
+                               tags$li("CartoDB: Alternative map tiles"),
+                               tags$li("Google Fonts: Typography (Poppins, JetBrains Mono)")
+                             )
+                    )
+                  )
+                )
+              )
+      ),
+      
       # Download Tab
       tabItem(tabName = "download",
               fluidRow(
@@ -1684,10 +1956,11 @@ server <- function(input, output, session) {
   observe({
     current_data <- if(values$data_merged) values$merged_data else values$current_data
     if(!is.null(current_data)) {
-      regions <- unique(current_data$Nama_Daerah)
-      years <- unique(current_data$Tahun)
+      # Sort regions alphabetically for better user experience
+      regions <- sort(unique(current_data$Nama_Daerah))
+      years <- sort(unique(current_data$Tahun))
       
-      # Update choices for descriptive analysis
+      # Update choices for descriptive analysis with proper formatting
       updateSelectInput(session, "desc_year", 
                         choices = c("Semua" = "All", setNames(years, years)), 
                         selected = "All")
@@ -1695,12 +1968,22 @@ server <- function(input, output, session) {
                         choices = c("Semua" = "All", setNames(regions, regions)), 
                         selected = "All")
       
-      # Update other choices
-      updateSelectInput(session, "corr_region", choices = c("Semua", regions), selected = "Semua")
-      updateSelectInput(session, "kw_region_filter", choices = c("Semua", regions), selected = "Semua")
-      updateSelectInput(session, "reg_region", choices = c("Semua", regions), selected = "Semua")
-      updateSelectInput(session, "ts_region", choices = regions, selected = regions[1])
-      updateSelectInput(session, "radar_region", choices = regions, selected = regions[1])
+      # Update other choices with sorted regions
+      updateSelectInput(session, "corr_region", 
+                        choices = c("Semua", regions), 
+                        selected = "Semua")
+      updateSelectInput(session, "kw_region_filter", 
+                        choices = c("Semua", regions), 
+                        selected = "Semua")
+      updateSelectInput(session, "reg_region", 
+                        choices = c("Semua", regions), 
+                        selected = "Semua")
+      updateSelectInput(session, "ts_region", 
+                        choices = regions, 
+                        selected = if(length(regions) > 0) regions[1] else NULL)
+      updateSelectInput(session, "radar_region", 
+                        choices = regions, 
+                        selected = if(length(regions) > 0) regions[1] else NULL)
     }
   })
   observeEvent(input$show_youtube_popup, {
@@ -2601,7 +2884,15 @@ server <- function(input, output, session) {
       corr_df <- corr_df[, c(ncol(corr_df), 1:(ncol(corr_df)-1))]
       
       DT::datatable(corr_df, 
-                    options = list(scrollX = TRUE, pageLength = 10),
+                    options = list(
+                      scrollX = TRUE, 
+                      pageLength = -1,
+                      searching = FALSE,
+                      paging = FALSE,
+                      info = FALSE,
+                      ordering = TRUE,
+                      dom = 't'
+                    ),
                     caption = paste("Korelasi Spearman - Filter: Tahun =", 
                                     ifelse(input$corr_year == "Semua", "Semua", input$corr_year),
                                     ", Daerah =", 
