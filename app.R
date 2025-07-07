@@ -236,7 +236,7 @@ p {
   border-radius: 12px;
   box-shadow: var(--shadow-md);
   margin-bottom: 25px;
-  overflow: hidden;
+  overflow: visible !important;
   transition: all 0.3s ease;
   position: relative;
   height: auto;
@@ -498,6 +498,7 @@ p {
   padding: 25px;
   background: var(--bg-primary);
   color: var(--text-primary);
+  overflow: visible !important;
 }
 
 /* Dark background text color override */
@@ -649,33 +650,74 @@ p {
 }
 
 /* Override any container overflow that might clip dropdown */
-.box, .box-body, .fluidRow, .col-sm-3, .col-sm-4, .col-sm-6, .col-sm-9, .col-sm-12 {
+.box, .box-body, .box-header, .fluidRow, .row, 
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, 
+.col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+.col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+.content-wrapper, .right-side, .main-sidebar, .tab-content, .tab-pane {
   overflow: visible !important;
 }
 
 .form-group {
   overflow: visible !important;
   position: relative !important;
+  z-index: auto !important;
 }
 
 /* Ensure selectize container doesn't clip dropdown */
 .selectize-control {
   overflow: visible !important;
   position: relative !important;
+  z-index: 1000 !important;
 }
 
-/* Force dropdown to appear above everything */
+.selectize-input {
+  overflow: visible !important;
+  z-index: 1001 !important;
+}
+
+/* Force dropdown to appear above everything with highest z-index */
 .selectize-dropdown {
   transform: translateZ(0) !important;
   -webkit-transform: translateZ(0) !important;
   will-change: transform !important;
   position: fixed !important;
+  z-index: 999999 !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+/* Specific override for dropdown positioning */
+.selectize-control.single .selectize-dropdown,
+.selectize-control.multi .selectize-dropdown {
+  position: absolute !important;
+  z-index: 999999 !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin-top: -1px !important;
 }
 
 /* Alternative fix for clipping issues */
-body > .selectize-dropdown {
-  z-index: 99999 !important;
-  position: fixed !important;
+body > .selectize-dropdown,
+.selectize-dropdown-content {
+  z-index: 999999 !important;
+  position: absolute !important;
+  overflow: visible !important;
+}
+
+/* Override for dashboard specific containers */
+.content, .content-header, .nav-tabs-custom, .tabsetPanel, .well {
+  overflow: visible !important;
+}
+
+/* Shiny specific containers */
+.shiny-input-container {
+  overflow: visible !important;
+  position: relative !important;
 }
 
 /* Data Table Enhancements */
@@ -1170,7 +1212,7 @@ ui <- dashboardPage(
       tags$style(HTML(climate_css)),
       tags$script(HTML("
         $(document).ready(function() {
-          // Configure selectize dropdowns
+          // Configure selectize dropdowns with better positioning
           $('select').selectize({
             maxOptions: 1000,  // Allow many options
             searchField: ['text', 'value'],
@@ -1180,31 +1222,89 @@ ui <- dashboardPage(
                 return '<div class=\"option\">' + escape(data.text) + '</div>';
               }
             },
-            dropdownParent: 'body',  // Ensure dropdown renders in body
             onDropdownOpen: function() {
-              // Ensure dropdown is positioned correctly
+              // Ensure dropdown is positioned correctly and escapes container
               var dropdown = this.$dropdown;
               var control = this.$control;
+              var controlOffset = control.offset();
+              var controlHeight = control.outerHeight();
+              var controlWidth = control.outerWidth();
               
+              // Position dropdown relative to control but outside any containers
               dropdown.css({
                 'position': 'absolute',
-                'z-index': '9999',
+                'z-index': '999999',
                 'max-height': '400px',
                 'overflow-y': 'auto',
-                'width': control.outerWidth() + 'px'
+                'overflow-x': 'hidden',
+                'width': controlWidth + 'px',
+                'top': (controlOffset.top + controlHeight) + 'px',
+                'left': controlOffset.left + 'px',
+                'border': '2px solid #064e3b',
+                'border-radius': '8px',
+                'box-shadow': '0 10px 15px -3px rgba(6, 78, 59, 0.1)',
+                'background': '#ffffff'
+              });
+              
+              // Append to body to escape container constraints
+              if (dropdown.parent()[0] !== document.body) {
+                dropdown.appendTo('body');
+              }
+            },
+            onDropdownClose: function() {
+              // Clean up positioning
+              var dropdown = this.$dropdown;
+              dropdown.css({
+                'position': '',
+                'top': '',
+                'left': '',
+                'z-index': ''
               });
             }
           });
           
           // Re-initialize selectize when content updates
-          $(document).on('shiny:value', function(event) {
-            if (event.target.tagName === 'SELECT') {
-              $(event.target).selectize({
-                maxOptions: 1000,
-                searchField: ['text', 'value'],
-                dropdownParent: 'body'
+          $(document).on('shiny:inputchanged', function(event) {
+            setTimeout(function() {
+              $('select:not(.selectized)').each(function() {
+                $(this).selectize({
+                  maxOptions: 1000,
+                  searchField: ['text', 'value'],
+                  placeholder: 'Pilih...',
+                  onDropdownOpen: function() {
+                    var dropdown = this.$dropdown;
+                    var control = this.$control;
+                    var controlOffset = control.offset();
+                    var controlHeight = control.outerHeight();
+                    var controlWidth = control.outerWidth();
+                    
+                    dropdown.css({
+                      'position': 'absolute',
+                      'z-index': '999999',
+                      'max-height': '400px',
+                      'overflow-y': 'auto',
+                      'width': controlWidth + 'px',
+                      'top': (controlOffset.top + controlHeight) + 'px',
+                      'left': controlOffset.left + 'px'
+                    });
+                    
+                    if (dropdown.parent()[0] !== document.body) {
+                      dropdown.appendTo('body');
+                    }
+                  }
+                });
               });
-            }
+            }, 100);
+          });
+          
+          // Handle window resize to reposition dropdowns
+          $(window).on('resize', function() {
+            $('.selectize-dropdown').each(function() {
+              var dropdown = $(this);
+              if (dropdown.is(':visible')) {
+                dropdown.hide();
+              }
+            });
           });
         });
       "))
